@@ -1,0 +1,58 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+:root {
+    --brown: #382207;
+    --bg: #81674A;
+    --light: #997C62;
+    --green: #34E4B5;
+    --red: #E03A45;
+}
+
+body {
+    background-color: var(--bg);
+    font-family: "roboto";  
+    /* font-family: "Bowlby One"; */
+    font-weight: 400;
+    color: white;
+    letter-spacing: 0.2vh;
+    font-size: 1.3vw;
+}
+
+.navbar{
+    width: 20vw;
+    background-color: var(--brown);
+    padding-left: 2.5vw;
+    padding-top: 1.5vw;
+    height: 100vh;
+    margin-right: 1.2vw;
+}
+
+.navbar h1, .nav-top h1 {
+    font-size: 2vw;
+}
+
+.navbar .line {
+    width: 15vw;
+    height: 0.15vw;
+    background-color: var(--light);
+    margin: 1.5vw 0;
+}
+
+.navbar > div.main  {
+    margin: 2vh 0
+}
+
+.navbar > div.main.last{
+    margin-bottom: 15vh;
+}
+
+.navbar span, .navbar a {
+    vertical-align: top;
+    margin-left: 1vw;
+    color: white;
+    text-decoration: none;
+}

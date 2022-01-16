@@ -38,9 +38,8 @@ const storage = multer.diskStorage({
 const upload = multer({ storage: storage, limits: { fileSize: 4194304 } });
 
 // Routes
-// MAHIKA: main dashboard render goes here
 router.get("/", checkPushpaAuth, (req, res) => {
-    res.send(`welcome`);
+    res.render("dash/dash", {message: false});
 });
 
 // AUTH
