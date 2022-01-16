@@ -38,6 +38,8 @@ conn.once("open", () => {
 });
 
 // ROUTES
+app.use("/public", express.static(__dirname + "/public"));
+
 app.get("/", (req, res) => res.redirect("/worker"));
 
 app.use("/dashboard", require("./routes/dashboard"));

@@ -42,6 +42,9 @@ const upload = multer({ storage: storage, limits: { fileSize: 4194304 } });
 router.get("/", checkPushpaAuth, (req, res) => {
     res.send(`welcome`);
 });
+router.get('/schedule', (req, res) => { 
+    res.render('dash/schedule')
+ });
 
 // AUTH
 router.get("/auth", checkNotPushpaAuth, (req, res) => {
