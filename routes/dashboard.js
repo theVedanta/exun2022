@@ -2,6 +2,7 @@ const router = require("express").Router();
 const jwt = require("jsonwebtoken");
 const bcrypt = require("bcrypt");
 const Product = require("../models/product");
+const Ingredient = require("../models/ingredients");
 const tinify = require("tinify");
 tinify.key = process.env.TINIFY;
 const fs = require("fs");
@@ -9,6 +10,7 @@ const multer = require("multer");
 const Grid = require("gridfs-stream");
 const path = require("path");
 const mongoose = require("mongoose");
+const uuid = require("uuid");
 
 // GRIDFS SETTINGS
 const conn = mongoose.connection;
@@ -71,21 +73,24 @@ router.get("/logout", checkPushpaAuth, (req, res) => {
 // Products
 router.get("/products", checkPushpaAuth, async (req, res) => {
     const products = await Product.find();
-    res.render("products", { products });
+    const ingredients = await Ingredient.find();
+    res.render("dash/products", { products, ingredients });
 });
 router.post("/products/add", upload.single("img"), async (req, res) => {
     try {
         const { name, price, desc } = req.body;
 
-        let source = tinify.fromFile(req.file.filename);
-        await source.toFile("toConvert.jpg");
         let filename = `${uuid.v4()}-${Date.now()}.jpg`;
         const writeStream = gfs.createWriteStream(filename);
-        await fs.createReadStream(`./toConvert.jpg`).pipe(writeStream);
-        fs.unlink("toConvert.jpg", (err) => {
-            if (err) {
-                res.send(err);
-            }
+        let source = tinify.fromFile(req.file.filename);
+        source.toFile("toConvert.jpg").then(() => {
+            fs.createReadStream(`./toConvert.jpg`).pipe(writeStream);
+            fs.unlink("toConvert.jpg", (err) => {
+                if (err) {
+                    console.log(err);
+                    res.send(err);
+                }
+            });
         });
         fs.unlink(`${req.file.filename}`, (err) => {
             if (err) {
@@ -93,11 +98,22 @@ router.post("/products/add", upload.single("img"), async (req, res) => {
             }
         });
 
+        // Ingredients
+        const ings = await Ingredient.find();
+        let ingredients = [];
+        for (let ing of ings) {
+            const id = ing._id.toString();
+            if (req.body[id] !== "1") {
+                ingredients.push({ id, quantity: parseInt(req.body[id]) });
+            }
+        }
+
         // SAVE
         let product = new Product({
             name,
             price,
             desc,
+            ingredients,
             img: filename,
         });
         await product.save();
