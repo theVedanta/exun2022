@@ -15,6 +15,7 @@ async function connectDB() {
     await mongoose.connect(dbURI, {
         useNewUrlParser: true,
         useUnifiedTopology: true,
+        useCreateIndex: true,
     });
     // Start server
     app.listen(PORT, () => console.log(`Listening on ${PORT}...`));
@@ -54,6 +55,7 @@ app.get("/img/:filename", async (req, res) => {
         readstream.pipe(res);
     } catch (err) {
         res.redirect("/err");
+        console.log(err);
     }
 });
 
