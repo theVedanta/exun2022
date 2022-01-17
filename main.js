@@ -4,11 +4,24 @@ if (process.env.NODE_ENV !== "production") {
 const express = require("express");
 const app = express();
 const mongoose = require("mongoose");
-const PORT = process.env.PORT || 4000;
+const port = process.env.PORT || 4000;
 const dbURI = process.env.DB_URL;
 const cookieParser = require("cookie-parser");
 const cors = require("cors");
 const Grid = require("gridfs-stream");
+const http = require("http");
+
+const { isObject } = require("util");
+const server = http.createServer(app)
+const io = require('socket.io')(server, {
+    cors: {
+        origin: "http://localhost:8100",
+        methods: ["GET", "POST"],
+        transports: ['websocket', 'polling'],
+        credentials: true
+    },
+    allowEIO3: true
+});
 
 // DB CONNECTION
 async function connectDB() {
@@ -17,8 +30,7 @@ async function connectDB() {
         useUnifiedTopology: true,
         useCreateIndex: true,
     });
-    // Start server
-    app.listen(PORT, () => console.log(`Listening on ${PORT}...`));
+    
 }
 connectDB();
 
@@ -68,3 +80,16 @@ app.get("/err", (req, res) => {
 app.get("*", (req, res) => {
     res.send("Error 404, Not found");
 });
+
+// !socket connection
+io.on('connection', (socket) => {
+    console.log('a user connected');
+    socket.on('disconnect', () => {
+        console.log('user disconnected');
+    });
+});
+
+// !Socket + express 
+server.listen(port, () => {
+    console.log("listening on port " + port)
+})

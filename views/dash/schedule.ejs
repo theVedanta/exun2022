@@ -8,6 +8,10 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/tailwindcss/1.1.2/tailwind.min.css">
     <link rel="stylesheet" href="/public/css/dash.css">
     <title>Schedule</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.0.3/socket.io.js"></script>
+    <script>
+        var socket = io();
+        </script>
 </head>
 <!-- body margin 0 padding 0 -->
 <body>
@@ -23,7 +27,110 @@
         <div class = "schedule">
             <div class="time">
                 <div class="calender">
-                    
+                    <div class="date">
+
+                    </div>
+                    <ul>
+                        <li>
+                            <div class="hour">
+                                <div class="hour-text">
+                                    <p>9</p>
+                                </div>
+                            </div>
+                            <div class="distribution">
+                                <div id="distribution" class="distributioncont">
+                                    
+                                </div>
+                            </div>
+                            <div class="hour" style="border-left: 3px solid #EBEBEB;" id="edit">
+
+                            </div>
+                        </li>
+                        <li>
+                            <div class="hour">
+                                <div class="hour-text">
+                                    <p>10</p>
+                                </div>
+                            </div>
+                            <div class="distribution">
+                            </div>
+                            <div class="hour" style="border-left: 3px solid #EBEBEB;">
+                                
+                            </div>
+                        </li>
+                        <li>
+                            <div class="hour">
+                                <div class="hour-text">
+                                    <p>11</p>
+                                </div>
+                            </div>
+                            <div class="distribution">
+                            </div>
+                            <div class="hour" style="border-left: 3px solid #EBEBEB;">
+
+                            </div>
+                        </li>
+                        <li>
+                            <div class="hour">
+                                <div class="hour-text">
+                                    <p>12</p>
+                                </div>
+                            </div>
+                            <div class="distribution">
+                            </div>
+                            <div class="hour" style="border-left: 3px solid #EBEBEB;">
+
+                            </div>
+                        </li>
+                        <li>
+                            <div class="hour">
+                                <div class="hour-text">
+                                    <p>13</p>
+                                </div>
+                            </div>
+                            <div class="distribution">
+                            </div>
+                            <div class="hour" style="border-left: 3px solid #EBEBEB;">
+
+                            </div>
+                        </li>
+                        <li>
+                            <div class="hour">
+                                <div class="hour-text">
+                                    <p>14</p>
+                                </div>
+                            </div>
+                            <div class="distribution">
+                            </div>
+                            <div class="hour" style="border-left: 3px solid #EBEBEB;">
+
+                            </div>
+                        </li>
+                        <li>
+                            <div class="hour">
+                                <div class="hour-text">
+                                    <p>15</p>
+                                </div>
+                            </div>
+                            <div class="distribution">
+                            </div>
+                            <div class="hour" style="border-left: 3px solid #EBEBEB;">
+
+                            </div>
+                        </li>
+                        <li>
+                            <div class="hour">
+                                <div class="hour-text">
+                                    <p>16</p>
+                                </div>
+                            </div>
+                            <div class="distribution">
+                            </div>
+                            <div class="hour" style="border-left: 3px solid #EBEBEB;">
+
+                            </div>
+                        </li>
+                    </ul>
                 </div>
             </div>
             <div class="all">
@@ -31,5 +138,9 @@
             </div>
         </div>
     </div>
+    
+    
+
+    <script src="/js/dash.js"></script>
 </body>
 </html>

@@ -1,3 +1,5 @@
+const express = require("express");
+const app = express();
 const router = require("express").Router();
 const jwt = require("jsonwebtoken");
 const bcrypt = require("bcrypt");
@@ -11,6 +13,7 @@ const Grid = require("gridfs-stream");
 const path = require("path");
 const mongoose = require("mongoose");
 const uuid = require("uuid");
+
 
 // GRIDFS SETTINGS
 const conn = mongoose.connection;
@@ -46,6 +49,7 @@ router.get("/", checkPushpaAuth, (req, res) => {
 });
 router.get('/schedule', (req, res) => { 
     res.render('dash/schedule')
+
  });
 
 // AUTH
@@ -136,6 +140,8 @@ router.get("/products/delete/:id", async (req, res) => {
         res.redirect("/err");
     }
 });
+
+
 
 // MIDDLEWARE
 function checkPushpaAuth(req, res, next) {
