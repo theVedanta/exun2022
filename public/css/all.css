@@ -24,7 +24,7 @@ body {
 }
 
 .navbar {
-    width: 20vw;
+    width: 15vw;
     background-color: var(--brown);
     padding-left: 2.5vw;
     padding-top: 1.5vw;
@@ -36,9 +36,12 @@ body {
 .nav-top h1 {
     font-size: 2vw;
 }
+.navbar h1 {
+    font-size: 1.6vw;
+}
 
 .navbar .line {
-    width: 15vw;
+    width: 10.5vw;
     height: 0.15vw;
     background-color: var(--light);
     margin: 1.5vw 0;
@@ -46,6 +49,7 @@ body {
 
 .navbar > div.main {
     margin: 2vh 0;
+    font-size: 1vw;
 }
 
 .navbar > div.main.last {
@@ -78,6 +82,20 @@ body {
     padding: 1.5vw 1.2vw;
     border-bottom-left-radius: 1vw;
     border-bottom-right-radius: 1vw;
+<<<<<<< HEAD
+}
+
+.nav-top img {
+    height: 2vw;
+    vertical-align: middle;
+    margin: 0 0.2vw
+}
+
+.flex-div-wrap {
+    display: flex;
+    width: 78vw;
+=======
+>>>>>>> a454b20e9f6339746fda83c48f2fc7f829ea12dd
 }
 
 .nav-top img {

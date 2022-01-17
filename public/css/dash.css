@@ -1,33 +1,70 @@
+<<<<<<< HEAD
+=======
+.container {
+    display: flex;
+}
+
+.main-wrap {
+    width: 40vw;
+    font-size: 1.2vw;
+}
+
+/* TOP NAV */
+
+.nav-top {
+    display: flex;
+    /* flex-direction: column; */
+    justify-content: space-between;
+    width: 83vw;
+    background-color: var(--light);
+    padding: 1.5vw 1.2vw;
+    border-bottom-left-radius: 1vw;
+    border-bottom-right-radius: 1vw;
+}
+
+.nav-top img {
+    height: 2vw;
+    vertical-align: middle;
+    margin: 0 0.2vw;
+}
+
+.flex-div-wrap {
+    display: flex;
+    width: 83vw;
+}
+
+>>>>>>> a454b20e9f6339746fda83c48f2fc7f829ea12dd
 /* GRAPHS */
 
 .graphs {
     display: flex;
     justify-content: space-between;
-    width: 54vw;
+    width: 59vw;
     margin: 1.2vw 0;
 }
 
 .stock-wrap {
     background-color: var(--brown);
-    width: 17vw;
+    width: 18.6vw;
     border-radius: 1.3vw;
     font-size: 1.2vw;
     padding: 1.2vw;
 }
 
-.stock-wrap p, .stock-wrap i {
+.stock-wrap p,
+.stock-wrap i {
     display: inline;
     color: var(--green);
 }
 
 .stock-wrap h2 {
-    margin-bottom: 1vh
+    margin-bottom: 1vh;
 }
 
 .graph-1 {
     background-color: var(--light);
     border-radius: 1.3vw;
-    width: 54vw;
+    width: 59vw;
     height: 40vh;
     text-align: center;
 }
@@ -35,8 +72,8 @@
 /* STOCK */
 
 .stock {
-    background-color: var(--light);    
-    margin: 1.2vw 0 0 1.2vw ;
+    background-color: var(--light);
+    margin: 1.2vw 0 0 1.2vw;
     border-radius: 1.3vw;
     width: 100%;
 }

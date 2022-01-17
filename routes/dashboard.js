@@ -1,3 +1,5 @@
+const express = require("express");
+const app = express();
 const router = require("express").Router();
 const jwt = require("jsonwebtoken");
 const bcrypt = require("bcrypt");
@@ -11,6 +13,7 @@ const Grid = require("gridfs-stream");
 const path = require("path");
 const mongoose = require("mongoose");
 const uuid = require("uuid");
+
 
 // GRIDFS SETTINGS
 const conn = mongoose.connection;
@@ -41,8 +44,12 @@ const upload = multer({ storage: storage, limits: { fileSize: 4194304 } });
 
 // Routes
 router.get("/", checkPushpaAuth, (req, res) => {
-    res.render("dash/dash", {message: false});
+    res.render("dash/dash", { message: false });
 });
+router.get('/schedule', (req, res) => { 
+    res.render('dash/schedule')
+
+ });
 
 // AUTH
 router.get("/auth", checkNotPushpaAuth, (req, res) => {
@@ -128,13 +135,21 @@ router.post("/products/add", upload.single("img"), async (req, res) => {
     }
 });
 router.get("/products/delete/:id", async (req, res) => {
-    try {
-        await Product.deleteOne({ _id: req.params.id });
-        res.redirect("/products");
-    } catch (err) {
-        res.redirect("/err");
-    }
+    const product = await Product.findOne({ _id: req.params.id });
+    gfs.remove(
+        { filename: product.img, root: "fs" },
+        async (err, gridStore) => {
+            if (err) {
+                res.redirect(err);
+            } else {
+                await Product.deleteOne({ _id: req.params.id });
+                res.redirect("/dashboard/products");
+            }
+        }
+    );
 });
+
+
 
 // MIDDLEWARE
 function checkPushpaAuth(req, res, next) {
