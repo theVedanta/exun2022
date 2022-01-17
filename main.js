@@ -55,7 +55,6 @@ app.get("/img/:filename", async (req, res) => {
         readstream.pipe(res);
     } catch (err) {
         res.redirect("/err");
-        console.log(err);
     }
 });
 

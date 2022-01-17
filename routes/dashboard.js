@@ -41,7 +41,7 @@ const upload = multer({ storage: storage, limits: { fileSize: 4194304 } });
 
 // Routes
 router.get("/", checkPushpaAuth, (req, res) => {
-    res.render("dash/dash", {message: false});
+    res.render("dash/dash", { message: false });
 });
 
 // AUTH
@@ -125,12 +125,18 @@ router.post("/products/add", upload.single("img"), async (req, res) => {
     }
 });
 router.get("/products/delete/:id", async (req, res) => {
-    try {
-        await Product.deleteOne({ _id: req.params.id });
-        res.redirect("/products");
-    } catch (err) {
-        res.redirect("/err");
-    }
+    const product = await Product.findOne({ _id: req.params.id });
+    gfs.remove(
+        { filename: product.img, root: "fs" },
+        async (err, gridStore) => {
+            if (err) {
+                res.redirect(err);
+            } else {
+                await Product.deleteOne({ _id: req.params.id });
+                res.redirect("/dashboard/products");
+            }
+        }
+    );
 });
 
 // MIDDLEWARE

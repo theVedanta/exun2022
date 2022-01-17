@@ -24,7 +24,7 @@ body {
 }
 
 .navbar {
-    width: 20vw;
+    width: 15vw;
     background-color: var(--brown);
     padding-left: 2.5vw;
     padding-top: 1.5vw;
@@ -36,9 +36,12 @@ body {
 .nav-top h1 {
     font-size: 2vw;
 }
+.navbar h1 {
+    font-size: 1.6vw;
+}
 
 .navbar .line {
-    width: 15vw;
+    width: 10.5vw;
     height: 0.15vw;
     background-color: var(--light);
     margin: 1.5vw 0;
@@ -46,6 +49,7 @@ body {
 
 .navbar > div.main {
     margin: 2vh 0;
+    font-size: 1vw;
 }
 
 .navbar > div.main.last {
