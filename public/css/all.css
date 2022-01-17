@@ -2,27 +2,28 @@
     margin: 0;
     padding: 0;
     box-sizing: border-box;
+    font-family: "Bowlby One";
+    font-weight: 100;
 }
 
 :root {
     --brown: #382207;
-    --bg: #81674A;
-    --light: #997C62;
-    --green: #34E4B5;
-    --red: #E03A45;
+    --bg: #81674a;
+    --light: #997c62;
+    --green: #34e4b5;
+    --red: #e03a45;
 }
 
 body {
     background-color: var(--bg);
-    font-family: "roboto";  
-    /* font-family: "Bowlby One"; */
+    font-family: "Bowlby One";
     font-weight: 400;
     color: white;
     letter-spacing: 0.2vh;
     font-size: 1.3vw;
 }
 
-.navbar{
+.navbar {
     width: 20vw;
     background-color: var(--brown);
     padding-left: 2.5vw;
@@ -31,7 +32,8 @@ body {
     margin-right: 1.2vw;
 }
 
-.navbar h1, .nav-top h1 {
+.navbar h1,
+.nav-top h1 {
     font-size: 2vw;
 }
 
@@ -42,15 +44,16 @@ body {
     margin: 1.5vw 0;
 }
 
-.navbar > div.main  {
-    margin: 2vh 0
+.navbar > div.main {
+    margin: 2vh 0;
 }
 
-.navbar > div.main.last{
+.navbar > div.main.last {
     margin-bottom: 15vh;
 }
 
-.navbar span, .navbar a {
+.navbar span,
+.navbar a {
     vertical-align: top;
     margin-left: 1vw;
     color: white;
