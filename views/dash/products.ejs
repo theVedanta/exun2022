@@ -4,46 +4,86 @@
         <meta charset="UTF-8" />
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <title>Products - Wonka's</title>
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+        <link
+            href="https://fonts.googleapis.com/css?family=Bowlby One:100,200,300,400,500,600,700,800,900"
+            rel="stylesheet"
+        />
+        <link rel="stylesheet" href="/css/all.css" />
+        <link rel="stylesheet" href="/css/products.css" />
+        <link
+            rel="stylesheet"
+            href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"
+        />
+        <title>Dashboard - Pushpa</title>
     </head>
     <body>
-        <form
-            action="/dashboard/products/add"
-            method="POST"
-            enctype="multipart/form-data"
-        >
-            <input
-                type="text"
-                name="name"
-                placeholder="Product Name"
-                required
-            />
-            <textarea
-                name="desc"
-                id="desc"
-                cols="30"
-                rows="10"
-                placeholder="Description of product"
-                required
-            ></textarea>
-            <input type="number" name="price" placeholder="Price" required />
-            <input type="file" name="img" required />
-
-            <% for (let ing of ingredients) {%>
-            <br />
-            <h1><%= ing.name %></h1>
-            <input
-                type="range"
-                min="1"
-                max="100"
-                value="0"
-                name="<%= ing._id %>"
-            />
-            <br />
-            <% } %>
-
-            <br /><br /><br />
-            <button type="submit">Done</button>
-        </form>
+        <div class="container">
+            <div class="navbar">
+                <!-- <img src="/assets/wlogo.svg"> -->
+                <h1>Logo</h1>
+                <div class="line"></div>
+                <div class="main">
+                    <i class="fa fa-car"></i>
+                    <a href="">Dashboard</a>
+                </div>
+                <div class="main">
+                    <i class="fa fa-car"></i>
+                    <a href="/dashboard/schedule">Schedule</a>
+                </div>
+                <div class="main">
+                    <i class="fa fa-car"></i>
+                    <a href="/dashboard/products">Products</a>
+                </div>
+                <div class="main last">
+                    <i class="fa fa-car"></i>
+                    <a href="/dashboard/create">Create</a>
+                </div>
+                <div class="line"></div>
+                <div class="main">
+                    <i class="fa fa-car"></i>
+                    <a href="/dashboard/logout">Log out</a>
+                </div>
+            </div>
+            <div class="main-wrap">
+                <div class="nav-top">
+                    <h1>Hello Pushpa</h1>
+                    <div>
+                        <img src="/assets/sun.svg" />
+                        <img src="/assets/search.svg" />
+                        <img src="/assets/bell.svg" />
+                        <img src="/assets/person.png" />
+                    </div>
+                </div>
+                <div class="wrap">
+                    <div class="text-wrap">
+                        <h1>LAVENDAR ROSEMARY CHOCOLATE</h1>
+                        <h3>Ingredients</h3>
+                        <p>Cocoa, milk, cocoa butter, lecithin, rosemary extract, sugar, edible lavender oil, vanilla essence</p>
+                        <div class="info-wrap">
+                            <div class="info">
+                                <h5 class="qty">216</h5>
+                                <p class="nutri">PROTEIN</p>
+                            </div>
+                            <div class="info">
+                                <h5 class="qty">216</h5>
+                                <p class="nutri">FAT</p>
+                            </div>
+                            <div class="info">
+                                <h5 class="qty">216</h5>
+                                <p class="nutri">SQRL</p>
+                            </div>
+                            <div class="info">
+                                <h5 class="qty">216</h5>
+                                <p class="nutri">CARBS</p>
+                            </div>
+                        </div>
+                        <h4 class="price">$28.5</h4><span>/1 bar</span>
+                    </div>
+                    <img class="bgImage" src="/assets/bg2.png">
+                </div>
+            </div>
+        </div>
     </body>
 </html>

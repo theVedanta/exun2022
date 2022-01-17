@@ -71,10 +71,13 @@ router.get("/logout", checkPushpaAuth, (req, res) => {
 });
 
 // Products
-router.get("/products", checkPushpaAuth, async (req, res) => {
+router.get("/products/", checkPushpaAuth, async (req, res) => {
+    res.render("dash/products");
+});
+router.get("/products/add", checkPushpaAuth, async (req, res) => {
     const products = await Product.find();
     const ingredients = await Ingredient.find();
-    res.render("dash/products", { products, ingredients });
+    res.render("dash/add-products", { products, ingredients });
 });
 router.post("/products/add", upload.single("img"), async (req, res) => {
     try {
