@@ -10,7 +10,7 @@ const cookieParser = require("cookie-parser");
 const cors = require("cors");
 const Grid = require("gridfs-stream");
 const http = require("http");
-
+const stats = require("./models/stats");
 const { isObject } = require("util");
 const server = http.createServer(app)
 const io = require('socket.io')(server, {
@@ -82,10 +82,58 @@ app.get("*", (req, res) => {
 });
 
 // !socket connection
+
 io.on('connection', (socket) => {
     console.log('a user connected');
     socket.on('disconnect', () => {
         console.log('user disconnected');
+    });
+    socket.on('task',async (data) => {
+        
+        console.log(data);
+        // convert json to string 
+        let task = JSON.stringify(data);
+        // get current date
+        let date = new Date();
+        // store only day and month and year
+        let day = date.getDate();
+        let month = date.getMonth() + 1;
+        let year = date.getFullYear();
+        date = `${day}/${month}/${year}`;
+        // if date already exists update data
+        let taskExists = await stats.findOne({ date: date });
+        if (taskExists) {
+            await stats.updateOne({ date: date }, { $set: { data: task } });
+        } else {
+            // else create new document
+            let newTask = new stats({
+                data: task,
+                date: date,
+            });
+            await newTask.save();
+        }
+
+    });
+
+    socket.on('join', (data) => {
+        console.log('join');
+        let date = new Date();
+        // store only day and month and year
+        let day = date.getDate();
+        let month = date.getMonth() + 1;
+        let year = date.getFullYear();
+        date = `${day}/${month}/${year}`;
+        // find data from date 
+        stats.findOne({ date: date }, (err, data) => {
+            if (err) {
+                console.log(err);
+            } else {
+                // if data exists send it to client
+                if (data) {
+                    socket.emit('data', data.data);
+                }
+            }
+        });
     });
 });
 

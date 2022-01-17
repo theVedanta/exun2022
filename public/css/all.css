@@ -1,0 +1,92 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: "Bowlby One";
+    font-weight: 100;
+}
+
+:root {
+    --brown: #382207;
+    --bg: #81674a;
+    --light: #997c62;
+    --green: #34e4b5;
+    --red: #e03a45;
+}
+
+body {
+    background-color: var(--bg);
+    font-family: "Bowlby One";
+    font-weight: 400;
+    color: white;
+    letter-spacing: 0.2vh;
+    font-size: 1.3vw;
+}
+
+.navbar {
+    width: 20vw;
+    background-color: var(--brown);
+    padding-left: 2.5vw;
+    padding-top: 1.5vw;
+    height: 100vh;
+    margin-right: 1.2vw;
+}
+
+.navbar h1,
+.nav-top h1 {
+    font-size: 2vw;
+}
+
+.navbar .line {
+    width: 15vw;
+    height: 0.15vw;
+    background-color: var(--light);
+    margin: 1.5vw 0;
+}
+
+.navbar > div.main {
+    margin: 2vh 0;
+}
+
+.navbar > div.main.last {
+    margin-bottom: 15vh;
+}
+
+.navbar span,
+.navbar a {
+    vertical-align: top;
+    margin-left: 1vw;
+    color: white;
+    text-decoration: none;
+}.container {
+    display: flex;
+}
+
+.main-wrap {
+    width: 40vw;
+    font-size: 1.2vw;
+}
+
+/* TOP NAV */
+
+.nav-top {
+    display: flex;
+    /* flex-direction: column; */
+    justify-content: space-between;
+    width: 78vw;
+    background-color: var(--light);
+    padding: 1.5vw 1.2vw;
+    border-bottom-left-radius: 1vw;
+    border-bottom-right-radius: 1vw;
+}
+
+.nav-top img {
+    height: 2vw;
+    vertical-align: middle;
+    margin: 0 0.2vw
+}
+
+.flex-div-wrap {
+    display: flex;
+    width: 78vw;
+}

@@ -5,8 +5,18 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <!-- import tailwind -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/tailwindcss/1.1.2/tailwind.min.css">
-    <link rel="stylesheet" href="/public/css/dash.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+        <link
+            href="https://fonts.googleapis.com/css?family=Bowlby One:100,200,300,400,500,600,700,800,900"
+            rel="stylesheet"
+        />
+        <link rel="stylesheet" href="/css/all.css" />
+        <link
+            rel="stylesheet"
+            href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"
+        />
+        <link rel="stylesheet" href="/public/css/sched.css">
     <title>Schedule</title>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.0.3/socket.io.js"></script>
     <script>
@@ -15,16 +25,52 @@
 </head>
 <!-- body margin 0 padding 0 -->
 <body>
+    <div class="edit-box">
+        <form>
+            
+        </form>
+    </div>
     <!-- create a sidebar width of 20% height 100% position fixed-->
-    <nav class="nav">
-        <!-- create a navbar -->
-        dddddddddddddddddddddddddddddddd
-    </nav>
-    <div class="container">
-        <div class="top">
-
+    <div class="navbar">
+        <img src="/assets/wlogo.svg">
+        <div class="line"></div>
+        <div class="main">
+            <i class="fa fa-car"></i>
+            <a href="">Dashboard</a>
         </div>
+        <div class="main">
+            <i class="fa fa-car"></i>
+            <a href="/dashboard/schedule">Schedule</a>
+        </div>
+        <div class="main">
+            <i class="fa fa-car"></i>
+            <a href="/dashboard/products">Products</a>
+        </div>
+        <div class="main last">
+            <i class="fa fa-car"></i>
+            <a href="/dashboard/create">Create</a>
+        </div>
+        <div class="line"></div>
+        <div class="main">
+            <i class="fa fa-car"></i>
+            <a href="/dashboard/logout">Log out</a>
+        </div>
+    </div>
+    <div class="container">
+        <div class="nav-top">
+            <h1>Hello Pushpa</h1>
+            <div>
+                <img src="/assets/sun.svg" />
+                <img src="/assets/search.svg" />
+                <img src="/assets/bell.svg" />
+                <img src="/assets/person.png" />
+            </div>
+        </div>
+        
         <div class = "schedule">
+            <div class="all">
+
+            </div>
             <div class="time">
                 <div class="calender">
                     <div class="date">
@@ -38,11 +84,11 @@
                                 </div>
                             </div>
                             <div class="distribution">
-                                <div id="distribution" class="distributioncont">
+                                <div id="distribution9" class="distributioncont">
                                     
                                 </div>
                             </div>
-                            <div class="hour" style="border-left: 3px solid #EBEBEB;" id="edit">
+                            <div class="add" style="border-left: 3px solid #EBEBEB;" id="edit9">
 
                             </div>
                         </li>
@@ -53,8 +99,11 @@
                                 </div>
                             </div>
                             <div class="distribution">
+                                <div id="distribution0" class="distributioncont">
+                                    
+                                </div>
                             </div>
-                            <div class="hour" style="border-left: 3px solid #EBEBEB;">
+                            <div class="add" style="border-left: 3px solid #EBEBEB;" id="edit10">
                                 
                             </div>
                         </li>
@@ -65,8 +114,11 @@
                                 </div>
                             </div>
                             <div class="distribution">
+                                <div id="distribution1" class="distributioncont">
+                                    
+                                </div>
                             </div>
-                            <div class="hour" style="border-left: 3px solid #EBEBEB;">
+                            <div class="add" style="border-left: 3px solid #EBEBEB;" id="edit11">
 
                             </div>
                         </li>
@@ -77,8 +129,11 @@
                                 </div>
                             </div>
                             <div class="distribution">
+                                <div id="distribution2" class="distributioncont">
+                                    
+                                </div>
                             </div>
-                            <div class="hour" style="border-left: 3px solid #EBEBEB;">
+                            <div class="add" style="border-left: 3px solid #EBEBEB;" id="edit12"> 
 
                             </div>
                         </li>
@@ -89,8 +144,11 @@
                                 </div>
                             </div>
                             <div class="distribution">
+                                <div id="distribution3" class="distributioncont">
+                                    
+                                </div>
                             </div>
-                            <div class="hour" style="border-left: 3px solid #EBEBEB;">
+                            <div class="add" style="border-left: 3px solid #EBEBEB;" id="edit13">
 
                             </div>
                         </li>
@@ -101,8 +159,11 @@
                                 </div>
                             </div>
                             <div class="distribution">
+                                <div id="distribution4" class="distributioncont">
+                                    
+                                </div>
                             </div>
-                            <div class="hour" style="border-left: 3px solid #EBEBEB;">
+                            <div class="add" style="border-left: 3px solid #EBEBEB;" id="edit14">
 
                             </div>
                         </li>
@@ -113,8 +174,11 @@
                                 </div>
                             </div>
                             <div class="distribution">
+                                <div id="distribution5" class="distributioncont">
+                                    
+                                </div>
                             </div>
-                            <div class="hour" style="border-left: 3px solid #EBEBEB;">
+                            <div class="add" style="border-left: 3px solid #EBEBEB;" id="edit15">
 
                             </div>
                         </li>
@@ -125,17 +189,18 @@
                                 </div>
                             </div>
                             <div class="distribution">
+                                <div id="distribution6" class="distributioncont">
+                                    
+                                </div>
                             </div>
-                            <div class="hour" style="border-left: 3px solid #EBEBEB;">
+                            <div class="add" style="border-left: 3px solid #EBEBEB;" id="edit16">
 
                             </div>
                         </li>
                     </ul>
                 </div>
             </div>
-            <div class="all">
-
-            </div>
+            
         </div>
     </div>
     
