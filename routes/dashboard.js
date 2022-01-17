@@ -1,3 +1,5 @@
+const express = require("express");
+const app = express();
 const router = require("express").Router();
 const jwt = require("jsonwebtoken");
 const bcrypt = require("bcrypt");
@@ -11,6 +13,7 @@ const Grid = require("gridfs-stream");
 const path = require("path");
 const mongoose = require("mongoose");
 const uuid = require("uuid");
+
 
 // GRIDFS SETTINGS
 const conn = mongoose.connection;
@@ -43,6 +46,10 @@ const upload = multer({ storage: storage, limits: { fileSize: 4194304 } });
 router.get("/", checkPushpaAuth, (req, res) => {
     res.render("dash/dash", { message: false });
 });
+router.get('/schedule', (req, res) => { 
+    res.render('dash/schedule')
+
+ });
 
 // AUTH
 router.get("/auth", checkNotPushpaAuth, (req, res) => {
@@ -138,6 +145,8 @@ router.get("/products/delete/:id", async (req, res) => {
         }
     );
 });
+
+
 
 // MIDDLEWARE
 function checkPushpaAuth(req, res, next) {
