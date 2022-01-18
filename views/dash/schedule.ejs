@@ -1,11 +1,11 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <!-- import tailwind -->
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <head>
+        <meta charset="UTF-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <!-- import tailwind -->
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
         <link
             href="https://fonts.googleapis.com/css?family=Bowlby One:100,200,300,400,500,600,700,800,900"
@@ -16,11 +16,11 @@
             rel="stylesheet"
             href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"
         />
-        <link rel="stylesheet" href="/public/css/sched.css">
-    <title>Schedule</title>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.0.3/socket.io.js"></script>
-    <script>
-        var socket = io();
+        <link rel="stylesheet" href="/public/css/sched.css" />
+        <title>Schedule</title>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.0.3/socket.io.js"></script>
+        <script>
+            var socket = io();
         </script>
 </head>
 <!-- body margin 0 padding 0 -->
@@ -79,138 +79,10 @@
                             auto
                         </div> -->
                     </div>
-                    <ul class="mainul">
-                        <hr id="clock">
-                        <li>
-                            <div class="hour">
-                                <div class="hour-text">
-                                    <p>9</p>
-                                </div>
-                            </div>
-                            <div class="distribution">
-                                <div id="distribution9" class="distributioncont">
-                                    
-                                </div>
-                            </div>
-                            <div class="add" style="border-left: 3px solid #EBEBEB;" id="edit9">
-                                <img class="add-icon" src="https://media.discordapp.net/attachments/931457073135366147/933025239070277703/UI-33-512.png">
-                            </div>
-                        </li>
-                        <li>
-                            <div class="hour">
-                                <div class="hour-text">
-                                    <p>10</p>
-                                </div>
-                            </div>
-                            <div class="distribution">
-                                <div id="distribution0" class="distributioncont">
-                                    
-                                </div>
-                            </div>
-                            <div class="add" style="border-left: 3px solid #EBEBEB;" id="edit10">
-                                <img class="add-icon" src="https://media.discordapp.net/attachments/931457073135366147/933025239070277703/UI-33-512.png">
-                            </div>
-                        </li>
-                        <li>
-                            <div class="hour">
-                                <div class="hour-text">
-                                    <p>11</p>
-                                </div>
-                            </div>
-                            <div class="distribution">
-                                <div id="distribution1" class="distributioncont">
-                                    
-                                </div>
-                            </div>
-                            <div class="add" style="border-left: 3px solid #EBEBEB;" id="edit11">
-                                <img class="add-icon" src="https://media.discordapp.net/attachments/931457073135366147/933025239070277703/UI-33-512.png">
-                            </div>
-                        </li>
-                        <li>
-                            <div class="hour">
-                                <div class="hour-text">
-                                    <p>12</p>
-                                </div>
-                            </div>
-                            <div class="distribution">
-                                <div id="distribution2" class="distributioncont">
-                                    
-                                </div>
-                            </div>
-                            <div class="add" style="border-left: 3px solid #EBEBEB;" id="edit12"> 
-                                <img class="add-icon" src="https://media.discordapp.net/attachments/931457073135366147/933025239070277703/UI-33-512.png">
-                            </div>
-                        </li>
-                        <li>
-                            <div class="hour">
-                                <div class="hour-text">
-                                    <p>13</p>
-                                </div>
-                            </div>
-                            <div class="distribution">
-                                <div id="distribution3" class="distributioncont">
-                                    
-                                </div>
-                            </div>
-                            <div class="add" style="border-left: 3px solid #EBEBEB;" id="edit13">
-                                <img class="add-icon" src="https://media.discordapp.net/attachments/931457073135366147/933025239070277703/UI-33-512.png">
-                            </div>
-                        </li>
-                        <li>
-                            <div class="hour">
-                                <div class="hour-text">
-                                    <p>14</p>
-                                </div>
-                            </div>
-                            <div class="distribution">
-                                <div id="distribution4" class="distributioncont">
-                                    
-                                </div>
-                            </div>
-                            <div class="add" style="border-left: 3px solid #EBEBEB;" id="edit14">
-                                <img class="add-icon" src="https://media.discordapp.net/attachments/931457073135366147/933025239070277703/UI-33-512.png">
-                            </div>
-                        </li>
-                        <li>
-                            <div class="hour">
-                                <div class="hour-text">
-                                    <p>15</p>
-                                </div>
-                            </div>
-                            <div class="distribution">
-                                <div id="distribution5" class="distributioncont">
-                                    
-                                </div>
-                            </div>
-                            <div class="add" style="border-left: 3px solid #EBEBEB;" id="edit15">
-                                <img class="add-icon" src="https://media.discordapp.net/attachments/931457073135366147/933025239070277703/UI-33-512.png">
-                            </div>
-                        </li>
-                        <li>
-                            <div class="hour">
-                                <div class="hour-text">
-                                    <p>16</p>
-                                </div>
-                            </div>
-                            <div class="distribution">
-                                <div id="distribution6" class="distributioncont">
-                                    
-                                </div>
-                            </div>
-                            <div class="add" style="border-left: 3px solid #EBEBEB;" id="edit16">
-                                <img class="add-icon" src="https://media.discordapp.net/attachments/931457073135366147/933025239070277703/UI-33-512.png">
-                            </div>
-                        </li>
-                    </ul>
                 </div>
             </div>
-
-            
         </div>
-    </div>
-    
-    
 
-    <script src="/js/dash.js"></script>
-</body>
+        <script src="/js/dash.js"></script>
+    </body>
 </html>

@@ -1,17 +1,15 @@
-
-
-body{
-    margin:0;
-    padding:0;
+body {
+    margin: 0;
+    padding: 0;
     width: 100vw;
     height: 100vh;
     display: flex;
     position: relative;
     overflow: hidden;
 }
-nav{
+nav {
     position: relative;
-    left:0;
+    left: 0;
     height: 100vh;
     width: 18%;
     background-color: #dbdbdb;
@@ -20,9 +18,8 @@ nav{
     padding: 0;
     overflow: hidden;
 }
-.container{
-    width: 82%;
-    background-color: #81674A;
+.container {
+    background-color: #81674a;
     height: 100vh;
     display: flex;
     margin: 0;
@@ -32,7 +29,7 @@ nav{
     overflow: hidden;
     flex-direction: column;
 }
-.top{
+.top {
     width: 100%;
     height: 10vh;
     background-color: #f2f2f2;
@@ -40,7 +37,7 @@ nav{
     margin: 0;
     padding: 0;
     position: relative;
-    top:0
+    top: 0;
 }
 .schedule {
     width: 100%;
@@ -49,30 +46,30 @@ nav{
     margin: 0;
     position: relative;
     top: 0vh;
-    display:flex;
+    display: flex;
     overflow: hidden;
 }
-.time{
-    background-color: #81674A;
+.time {
+    background-color: #81674a;
     width: 75%;
     display: inline-block;
     margin: 0;
 }
-.all{
-    background-color: #81674A;
+.all {
+    background-color: #81674a;
     width: 24%;
     display: inline-block;
-    margin:0;
+    margin: 0;
     height: 100%;
 }
-.calender{
+.calender {
     position: relative;
-    top:50%;
-    left:50%;
-    transform: translate(-50%,-50%);
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
     height: 95%;
     width: 96%;
-    background-color: #81674A;
+    background-color: #81674a;
     overflow: hidden;
 }
 /* .date:after {
@@ -83,17 +80,17 @@ nav{
     z-index:1;
     box-shadow: 0px 0px 3px 0.6px #0000002f;
 } */
-.mainul{
+.mainul {
     list-style: none;
     margin: 0;
     padding: 0;
     height: 75vh;
     display: block;
-    background-color: #81674A;
+    background-color: #81674a;
     overflow-y: hidden;
     position: relative;
 }
-.mainul li{
+.mainul li {
     width: 100%;
     display: block;
     margin: 0;
@@ -101,53 +98,52 @@ nav{
     overflow: hidden;
     height: 10%;
     display: flex;
-   
-    border-bottom: 1px solid #81674A;
+
+    border-bottom: 1px solid #81674a;
 }
-.mainul hr{
+.mainul hr {
     width: 87.5%;
-    left:50%;
+    left: 50%;
     transform: translateX(-50%);
     height: 1px;
     background-color: yellow;
     margin: 0;
     padding: 0;
     position: fixed;
-    top:82%;
+    top: 82%;
     z-index: 100;
 }
-.hour{
+.hour {
     width: 6%;
     height: 100%;
     display: inline-block;
     margin: 0;
     padding: 0;
-    background-color: #81674A;
+    background-color: #81674a;
 }
-.distribution{
+.distribution {
     width: 88%;
     height: 100%;
     display: inline-block;
     margin: 0;
     padding: 0;
-    background-color: #94785F;
+    background-color: #94785f;
     overflow: hidden;
 }
-.hour-text{
-
+.hour-text {
     display: inline-block;
     margin: 0;
     padding: 0;
-    background-color: #81674A;
+    background-color: #81674a;
     text-align: center;
     font-size: 21px;
     color: white;
     position: relative;
     top: 50%;
-    left:50%;
-    transform: translate(-50%,-50%);
+    left: 50%;
+    transform: translate(-50%, -50%);
 }
-.task{
+.task {
     width: 100%;
     height: 100%;
     display: inline-block;
@@ -159,7 +155,7 @@ nav{
     overflow: hidden;
     font-size: 10px;
 }
-.distributioncont{
+.distributioncont {
     width: 98%;
     height: 92%;
     display: inline-block;
@@ -167,12 +163,12 @@ nav{
     padding: 0;
     position: relative;
     top: 50%;
-    left:50%;
-    transform: translate(-50%,-50%);
+    left: 50%;
+    transform: translate(-50%, -50%);
     display: flex;
     overflow: hidden;
 }
-.task h1{
+.task h1 {
     width: 100%;
     font-size: 12px;
     font-style: regular;
@@ -180,99 +176,96 @@ nav{
     padding: 0;
     margin: 0;
     position: absolute;
-    left:0;
-    top:30%;
+    left: 0;
+    top: 30%;
     cursor: pointer;
 }
-.line{
+.line {
     width: 100%;
     height: 4px;
-    left:0;
+    left: 0;
     position: absolute;
-    top:120%;
+    top: 120%;
     background-color: black;
     border-radius: 10%;
 }
-.add{
+.add {
     width: 6%;
     height: 100%;
     display: inline-block;
     margin: 0;
     padding: 0;
-    background-color: #94785F;
+    background-color: #94785f;
 }
-.editbox{
+.editbox {
     position: absolute;
-    top:50%;
-    left:50%;
-    transform: translate(-50%,-50%);
-    background-color: #81674A;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: #81674a;
     width: 40%;
     height: 40%;
     z-index: 2;
     border-radius: 20px;
-
 }
-.milk h1 .line{
+.milk h1 .line {
     background-color: wheat;
 }
-.almond h1 .line{
+.almond h1 .line {
     background-color: #7c572c;
 }
-.dark h1 .line{
+.dark h1 .line {
     background-color: #582f00;
 }
-.fruits h1 .line{
+.fruits h1 .line {
     background-color: plum;
 }
-.cleaning h1 .line{
+.cleaning h1 .line {
     background-color: aqua;
 }
-.raw_milk h1 .line{
-background: repeating-linear-gradient(
+.raw_milk h1 .line {
+    background: repeating-linear-gradient(
         45deg,
         wheat,
         wheat 10px,
         white 10px,
         white 20px
-      );
+    );
 }
-.raw_cocoa h1 .line{
+.raw_cocoa h1 .line {
     background: repeating-linear-gradient(
-            45deg,
-            #81674A,
-            #81674A 10px,
-            #582f00 10px,
-            #582f00 20px
-          );
+        45deg,
+        #81674a,
+        #81674a 10px,
+        #582f00 10px,
+        #582f00 20px
+    );
 }
-.raw_sugar h1 .line{
+.raw_sugar h1 .line {
     background: repeating-linear-gradient(
-            45deg,
-            blue,
-            blue 10px,
-            aqua 10px,
-            aqua 20px
-          );
+        45deg,
+        blue,
+        blue 10px,
+        aqua 10px,
+        aqua 20px
+    );
 }
-.schedule-header{
-
-        position: relative;
-        top: 50%;
-        left: 50%;
-        transform: translate(-50%,-50%);
-        height: 95%;
-        width: 96%;
-        overflow: hidden;
-    
+.schedule-header {
+    position: relative;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    height: 95%;
+    width: 96%;
+    overflow: hidden;
 }
-.tru{
-    background-color: #A6876B;
+.tru {
+    background-color: #a6876b;
     width: 100%;
     height: 84%;
     border-radius: 20px;
 }
-.add-icon{
+.add-icon {
     width: 100%;
     transform: scale(0.5);
 }
