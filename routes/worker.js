@@ -42,7 +42,10 @@ router.get("/add", (req, res) => {
 });
 router.post("/add", async (req, res) => {
     const pass = await bcrypt.hash(req.body.password, 10);
-    const { username, password } = { username: req.body.username, password: pass };
+    const { username, password } = {
+        username: req.body.username,
+        password: pass,
+    };
     const worker = new Worker({ username, password });
 
     try {

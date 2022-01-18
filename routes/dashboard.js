@@ -1,5 +1,4 @@
 const express = require("express");
-const app = express();
 const router = require("express").Router();
 const jwt = require("jsonwebtoken");
 const bcrypt = require("bcrypt");
@@ -14,6 +13,7 @@ const Grid = require("gridfs-stream");
 const path = require("path");
 const mongoose = require("mongoose");
 const uuid = require("uuid");
+const Income = require("../models/income");
 
 // GRIDFS SETTINGS
 const conn = mongoose.connection;
@@ -43,8 +43,37 @@ const storage = multer.diskStorage({
 const upload = multer({ storage: storage, limits: { fileSize: 4194304 } });
 
 // Routes
-router.get("/", checkPushpaAuth, (req, res) => {
-    res.render("dash/dash", { message: false });
+router.get("/", checkPushpaAuth, async (req, res) => {
+    const imgObj = {
+        0: "/assets/low.png",
+        50: "/assets/med.png",
+        100: "/assets/high.png",
+    };
+    const milk = await Ingredient.findOne({ name: "Milk" });
+    const cocoa = await Ingredient.findOne({ name: "Cocoa" });
+    const chocolate = await Ingredient.findOne({ name: "Chocolate" });
+
+    const data = await Income.find();
+    let valArr = [];
+    for (let val of data[0].history) {
+        valArr.push(val.value);
+    }
+
+    let dateArr = [];
+    for (let val of data[0].history) {
+        dateArr.push(`${val.date.getDate()}/${val.date.getMonth() + 1}`);
+    }
+
+    res.render("dash/dash", {
+        message: false,
+        milk: milk.quantity,
+        cocoa: cocoa.quantity,
+        chocolate: chocolate.quantity,
+        imgObj,
+        valArr,
+        dateArr,
+        value: data[0].value,
+    });
 });
 router.get("/schedule", (req, res) => {
     res.render("dash/schedule");

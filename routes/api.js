@@ -2,6 +2,7 @@ const router = require("express").Router();
 const Product = require("../models/product");
 const Ingredient = require("../models/ingredients");
 const Order = require("../models/order");
+const Income = require("../models/income");
 
 // Routes
 router.get("/products", async (req, res) => {
@@ -50,6 +51,9 @@ router.post("/suggest-engine", async (req, res) => {
 
 router.post("/place", async (req, res) => {
     try {
+        let money = 0;
+        const incomeObj = await Income.find();
+
         for (let ord of req.body.orders) {
             const quan = ord.quantity;
             const product = await Product.findById(ord.id);
@@ -107,6 +111,8 @@ router.post("/place", async (req, res) => {
                 }
             );
 
+            money += incomeObj[0].value + product.price * quan;
+
             let date = new Date();
             // store only day and month and year
             let day = date.getDate();
@@ -120,9 +126,17 @@ router.post("/place", async (req, res) => {
                 date,
             });
             await order.save();
-
-            res.json({ done: true });
         }
+
+        const history = incomeObj[0].history;
+        history.push({ date: new Date(), value: money });
+
+        await Income.updateOne(
+            { _id: incomeObj[0]._id },
+            { $set: { value: money, history } }
+        );
+
+        res.json({ done: true });
     } catch (err) {
         res.json({ err });
     }
