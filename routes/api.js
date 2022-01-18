@@ -16,7 +16,19 @@ router.post("/suggest-engine", async (req, res) => {
     for (let product of products) {
         let scoreObj = { id: product._id, score: 0 };
         // QUESTIONS
-        if (product.serving === body.serving) {
+        if (product.recoms.type === body.type) {
+            scoreObj.score++;
+        }
+        if (product.recoms.cocoa === body.cocoa) {
+            scoreObj.score++;
+        }
+        if (product.recoms.milk === body.milk) {
+            scoreObj.score++;
+        }
+        if (product.recoms.servings === body.servings) {
+            scoreObj.score++;
+        }
+        if (product.recoms.flavour === body.flavour) {
             scoreObj.score++;
         }
 
