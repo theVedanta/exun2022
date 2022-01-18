@@ -46,7 +46,7 @@ const upload = multer({ storage: storage, limits: { fileSize: 4194304 } });
 router.get("/", checkPushpaAuth, async (req, res) => {
     const imgObj = {
         0: "/assets/low.png",
-        50: "/assets/med.png",
+        50: "/assets/mid.png",
         100: "/assets/high.png",
     };
     const milk = await Ingredient.findOne({ name: "Milk" });

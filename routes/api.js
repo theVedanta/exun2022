@@ -15,6 +15,7 @@ router.post("/suggest-engine", async (req, res) => {
     const products = await Product.find();
     let scoreCard = [];
     let highestScore = 0;
+    let getProduct;
 
     for (let product of products) {
         let scoreObj = { id: product._id, score: 0 };
@@ -43,10 +44,10 @@ router.post("/suggest-engine", async (req, res) => {
 
     for (let product of scoreCard) {
         if (product.score === highestScore) {
-            const getProduct = await Product.findById(product.id);
-            res.json({ product: getProduct });
+            getProduct = await Product.findById(product.id);
         }
     }
+    res.json({ product: getProduct });
 });
 
 router.post("/place", async (req, res) => {
