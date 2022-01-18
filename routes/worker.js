@@ -5,7 +5,7 @@ const Worker = require("../models/worker");
 
 // Routes
 router.get("/", checkWorkerAuth, (req, res) => {
-    res.send("worker app here");
+    res.render("worker/dashboard");
 });
 
 router.get("/auth", checkNotWorkerAuth, (req, res) => {
@@ -38,10 +38,11 @@ router.post("/auth", async (req, res) => {
     }
 });
 router.get("/add", (req, res) => {
-    res.render("add-worker");
+    res.render("worker/add-worker");
 });
 router.post("/add", async (req, res) => {
-    const { username, password } = req.body;
+    const pass = await bcrypt.hash(req.body.password, 10);
+    const { username, password } = { username: req.body.username, password: pass };
     const worker = new Worker({ username, password });
 
     try {

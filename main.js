@@ -13,6 +13,7 @@ const http = require("http");
 const stats = require("./models/stats");
 const { isObject } = require("util");
 const server = http.createServer(app)
+const workerrr = require("./models/worker");
 const io = require('socket.io')(server, {
     cors: {
         origin: "http://localhost:8100",
@@ -22,6 +23,9 @@ const io = require('socket.io')(server, {
     },
     allowEIO3: true
 });
+const schedule = require('node-schedule');
+const jwt = require("jsonwebtoken");
+var Workers = {}
 
 // DB CONNECTION
 async function connectDB() {
@@ -80,8 +84,8 @@ app.get("*", (req, res) => {
     res.send("Error 404, Not found");
 });
 
+var Workers = []
 // !socket connection
-
 io.on('connection', (socket) => {
     console.log('a user connected');
     socket.on('disconnect', () => {
@@ -134,9 +138,65 @@ io.on('connection', (socket) => {
             }
         });
     });
+
+    socket.on('login', async (data) => {
+        jwt.verify(data, process.env.ACCESS_TOKEN_SECRET, async (err, decoded) => {
+            if (err) {
+                console.log(err);
+            } else {
+                var uid = decoded.id;
+                // find data from mongo db
+                let user = await workerrr.findOne({ _id: uid });
+                var urname = user.username;
+                socket.emit('user', {token: data, user: urname});
+            }
+        });
+    });
+
+    socket.on('wrkr', (data) => {
+        // if jwt is valid 
+        console.log('worker');
+        let date = new Date();
+        // store only day and month and year
+        let day = date.getDate();
+        let month = date.getMonth() + 1;
+        let year = date.getFullYear();
+        date = `${day}/${month}/${year}`;
+        // get data 
+        stats.findOne({ date: date }, (err, data) => {
+            var taskss = JSON.parse(data.data);
+            socket.emit('data', taskss);
+        });
+        
+    });
+
+    socket.on('getdata', (data) => {
+        console.log('getdata');
+        let date = new Date();
+        // store only day and month and year
+        let day = date.getDate();
+        let month = date.getMonth() + 1;
+        let year = date.getFullYear();
+        date = `${day}/${month}/${year}`;
+        // get data 
+        stats.findOne({ date: date }, (err, data) => {
+            var taskss = JSON.parse(data.data);
+            socket.emit('yeledata', taskss);
+        });
+        
+    });
+
 });
+
+
+
 
 // !Socket + express 
 server.listen(port, () => {
     console.log("listening on port " + port)
 })
+
+// sleep function
+function sleep(ms) {
+    return new Promise(resolve => setTimeout(resolve, ms));
+}
