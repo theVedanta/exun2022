@@ -1,0 +1,116 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Roboto', sans-serif;
+    font-weight: 400;
+    outline: none;
+}
+
+:root {
+    --brown: #382207;
+    --h: #4e3b24;
+    --bg: #81674a;
+    --light: #997c62;
+    --green: #34e4b5;
+    --red: #e03a45;
+    --vlight: #BDA188;
+}
+
+body {
+    background-color: var(--vlight);
+}
+
+.top {
+    display: flex;
+    justify-content: space-between;
+    font-size: 8vw;
+    padding: 2vh 15vw;
+    color: var(--brown);
+}
+
+.e {
+    display: flex;
+    justify-content: center;
+    font-weight: 800;
+}
+
+.top .date-info {
+    font-size: 4.7vw;
+    margin: auto 0 auto 1.5vw;
+    color: white;
+}
+
+.top .tod {
+    margin: auto 0 auto 4vw;
+    background-color: var(--light);
+    font-size: 6vw;
+    border-radius: 2vw;
+    padding: 2vw 3vw;
+}
+
+.main {
+    background-color: white;
+    border-radius: 5vw;
+    height: 80vh
+}
+
+.main-intro {
+    display: flex;
+    justify-content: space-between;
+    padding: 3vh 4vw;
+}
+
+.main-intro h2 {
+    font-size: 8vw;
+    font-weight: bolder;
+}
+
+.main-intro .greet {
+    color: #BDA188;
+    font-size: 4.5vw;
+}
+
+.choco-count {
+    display: flex;
+    justify-content: center;
+}
+
+.choco-count p {
+    font-size: 6vw;
+    margin: 1vh 0 1vh 1vw;
+}
+
+.choco-count img {
+    height: 5vh;
+}
+
+.task-cont {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+}
+
+.task-cont h3 {
+    background-color: var(--vlight);
+    display: inline-block;
+    padding: 2vw 3vw;
+    border-radius: 4vw;
+    color: white;
+    text-align: center;
+}
+
+.task-wrap {
+    display: flex;
+    justify-content: space-between;
+    background-color: var(--brown);
+    margin: 2vw;
+    border-radius: 3vw;
+    padding: 2vh 1.5vh;
+    color: white;
+}
+
+.choco {
+    display: flex;
+    justify-content: space-between;
+}

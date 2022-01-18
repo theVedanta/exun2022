@@ -6,12 +6,81 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Oompa Loompa</title>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.0.3/socket.io.js"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+        href="https://fonts.googleapis.com/css?family=Bowlby One:100,200,300,400,500,600,700,800,900"
+        rel="stylesheet"
+    />
+    <link 
+        href="https://fonts.googleapis.com/css2?family=Roboto:wght@500&display=swap"
+        rel="stylesheet"
+    >   
+    <link rel="stylesheet" href="/css/worker.css" />
+    <link
+        rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"
+    />
     <script>
         var socket = io();
-        </script>
+    </script>
 </head>
 <body>
-    <h1>Oompa Loompa</h1>
+    <div class="top">
+        <div class="e">    
+            <h1 class="date">24</h1>
+            <div class="date-info">
+                <p class="weekday">Wed</p>
+                <p class="year">Jan 2022</p>
+            </div>
+        </div>    
+        <p class="tod">Today</p>
+    </div>
+    <div class="main">
+        <div class="main-intro">                
+            <div>
+                <h2>Hi Oompa!</h2>
+                <p class="greet">Good Morning</p>
+            </div>
+            <div class="choco-count">
+                <img src="/assets/nut.svg">
+                <p>28</p>
+            </div>        
+        </div>
+        <div class="task-cont">
+            <h3>Task List</h3>
+            <div class="task-wrap">
+                <div class="task-text">
+                    <h2>Find Cocoa Beans</h2>
+                    <p>10:00am-12:00am</p>
+                </div>
+                <div class="choco">
+                    <img src="/assets/nut.svg">
+                    <p>7</p>
+                </div>
+            </div>
+            <div class="task-wrap">
+                <div class="task-text">
+                    <h2>Find Cocoa Beans</h2>
+                    <p>10:00am-12:00am</p>
+                </div>
+                <div class="choco">
+                    <img src="/assets/nut.svg">
+                    <p>7</p>
+                </div>
+            </div>
+            <div class="task-wrap">
+                <div class="task-text">
+                    <h2>Find Cocoa Beans</h2>
+                    <p>10:00am-12:00am</p>
+                </div>
+                <div class="choco">
+                    <img src="/assets/nut.svg">
+                    <p>7</p>
+                </div>
+            </div>
+        </div>
+    </div>
     <div id="current task">
 
     </div>
