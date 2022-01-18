@@ -4,6 +4,7 @@ const router = require("express").Router();
 const jwt = require("jsonwebtoken");
 const bcrypt = require("bcrypt");
 const Product = require("../models/product");
+const Worker = require("../models/worker");
 const Ingredient = require("../models/ingredients");
 const tinify = require("tinify");
 tinify.key = process.env.TINIFY;

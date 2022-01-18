@@ -25,8 +25,6 @@ body {
     color: white;
     letter-spacing: 0.2vh;
     font-size: 1.3vw;
-    width: 100vw;
-    overflow: hidden;
 }
 
 .navbar {
@@ -55,7 +53,7 @@ body {
 
 .navbar > div.main {
     margin: 2vh 0;
-    font-size: 1vw;
+    font-size: 1.1vw;
 }
 
 .navbar > div.main.last {
@@ -65,7 +63,7 @@ body {
 .navbar span,
 .navbar a {
     vertical-align: top;
-    margin-left: 1vw;
+    margin-left: 0.5vw;
     color: white;
     text-decoration: none;
 }
@@ -89,7 +87,6 @@ body {
 
 .nav-top {
     display: flex;
-    /* flex-direction: column; */
     justify-content: space-between;
     width: 83.8vw;
     background-color: var(--light);
