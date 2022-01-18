@@ -1,5 +1,7 @@
 const router = require("express").Router();
 const Product = require("../models/product");
+const Ingredient = require("../models/ingredients");
+const Order = require("../models/order");
 
 // Routes
 router.get("/products", async (req, res) => {
@@ -43,6 +45,86 @@ router.post("/suggest-engine", async (req, res) => {
             const getProduct = await Product.findById(product.id);
             res.json({ product: getProduct });
         }
+    }
+});
+
+router.post("/place", async (req, res) => {
+    try {
+        for (let ord of req.body.orders) {
+            const quan = ord.quantity;
+            const product = await Product.findById(ord.id);
+            const milk = await Ingredient.findOne({ name: "Milk" });
+            const cocoa = await Ingredient.findOne({ name: "Cocoa" });
+            const chocolate = await Ingredient.findOne({ name: "Chocolate" });
+
+            const chocoGraph = {
+                dark: 3,
+                normal: 2,
+                light: 1,
+            };
+
+            const milkUsed =
+                parseInt(product.recoms.servings) *
+                parseInt(product.recoms.milk) *
+                (33 / 100) *
+                quan;
+            const cocoaUsed =
+                product.recoms.type === "chocolate"
+                    ? parseInt(product.recoms.servings) *
+                      parseInt(product.recoms.milk) *
+                      (33 / 100) *
+                      quan
+                    : 0;
+
+            const chocolateUsed =
+                chocoGraph[product.recoms.flavour] *
+                parseInt(product.recoms.cocoa) *
+                (33 / 100) *
+                quan;
+
+            await Ingredient.updateOne(
+                { _id: milk._id },
+                {
+                    $set: {
+                        quantity: milk.quantity - milkUsed,
+                    },
+                }
+            );
+            await Ingredient.updateOne(
+                { _id: cocoa._id },
+                {
+                    $set: {
+                        quantity: cocoa.quantity - cocoaUsed,
+                    },
+                }
+            );
+            await Ingredient.updateOne(
+                { _id: chocolate._id },
+                {
+                    $set: {
+                        quantity: chocolate.quantity - chocolateUsed / 2,
+                    },
+                }
+            );
+
+            let date = new Date();
+            // store only day and month and year
+            let day = date.getDate();
+            let month = date.getMonth() + 1;
+            let year = date.getFullYear();
+            date = `${day}/${month}/${year}`;
+
+            let order = new Order({
+                productId: ord.id,
+                quantity: ord.quantity,
+                date,
+            });
+            await order.save();
+
+            res.json({ done: true });
+        }
+    } catch (err) {
+        res.json({ err });
     }
 });
 
