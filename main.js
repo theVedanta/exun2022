@@ -14,6 +14,7 @@ const stats = require("./models/stats");
 const { isObject } = require("util");
 const server = http.createServer(app)
 const workerrr = require("./models/worker");
+const ing = require("./models/ingredients");
 const io = require('socket.io')(server, {
     cors: {
         origin: "http://localhost:8100",
@@ -25,7 +26,12 @@ const io = require('socket.io')(server, {
 });
 const schedule = require('node-schedule');
 const jwt = require("jsonwebtoken");
-var Workers = {}
+var naklidata = {
+    rate : 100,
+    dark :5000,
+    milk : 10000,
+    white: 5000,
+}
 
 // DB CONNECTION
 async function connectDB() {
@@ -184,6 +190,16 @@ io.on('connection', (socket) => {
             socket.emit('yeledata', taskss);
         });
         
+    });
+
+    socket.on('schedulerdata', (data) => {
+        console.log('schedulerdata');
+        let date = new Date();
+        let hour = date.getHours();
+        if (hour < 10){
+            naklidata['ingredient'] = null;
+        }
+
     });
 
 });

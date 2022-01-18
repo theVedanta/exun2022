@@ -187,3 +187,9 @@ function setheight(){
     setTimeout(setheight, 60000);
 }
 setheight()
+
+function scheduler(){
+ socket.emit('schedulerdata', {} )
+
+
+}

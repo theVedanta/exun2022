@@ -7,6 +7,7 @@ body{
     height: 100vh;
     display: flex;
     position: relative;
+    overflow: hidden;
 }
 nav{
     position: relative;
@@ -73,14 +74,6 @@ nav{
     width: 96%;
     background-color: #81674A;
     overflow: hidden;
-}
-.date{
-    width: 94%;
-    height: 10%;
-    position: relative;
-    background-color: #A6876B;
-    margin-left: 6%;
-    border-radius: 20px 20px 0px 0px;
 }
 /* .date:after {
     content:"";
@@ -282,4 +275,34 @@ background: repeating-linear-gradient(
 .add-icon{
     width: 100%;
     transform: scale(0.5);
+}
+.date{
+    width: 94%;
+    height: 10%;
+    position: relative;
+    background-color: #A6876B;
+    margin-left: 6%;
+    border-radius: 20px 20px 0px 0px;
+    display: flex;
+}
+#datentime{
+    width: 50%;
+    height: 100%;
+    display: inline-block;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+}
+.auto{
+    width: 40%;
+    display: inline-block;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    text-align: right;
+    position: absolute;
+    right:10%;
+    top:50%;
+    transform: translateY(-50%);
+    cursor: pointer;
 }
