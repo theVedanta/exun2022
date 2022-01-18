@@ -13,6 +13,7 @@ const http = require("http");
 const stats = require("./models/stats");
 const { isObject } = require("util");
 const server = http.createServer(app)
+const workerrr = require("./models/worker");
 const io = require('socket.io')(server, {
     cors: {
         origin: "http://localhost:8100",
@@ -139,79 +140,52 @@ io.on('connection', (socket) => {
         });
     });
 
-    socket.on('wrkr', (data) => {
-        // if jwt is valid 
-        const date = new Date();
-        jwt.verify(data, process.env.ACCESS_TOKEN_SECRET, (err, decoded) => {
+    socket.on('login', async (data) => {
+        jwt.verify(data, process.env.ACCESS_TOKEN_SECRET, async (err, decoded) => {
             if (err) {
                 console.log(err);
-            } else {          
-                // if time.gethours is between 9 and 16 and time.getminutes is between 0 and 5 
-                console.log("checking time")
-                if(date.getHours() >= 9 && date.getHours() <= 17 && date.getMinutes() >= 0 && date.getMinutes() <= 10){
-                    // if jwt is valid add the userid to a list if not already in it
-                    console.log("did stuff")
-                    if (!Workers.includes(decoded.id)) {
-                        Workers.push(decoded.id);
-                        console.log(Workers);
-                    } else {
-                        console.log(Workers)
-                    }  
-                } else {
-                    console.log('not in working hours');
-                }
-
+            } else {
+                var uid = decoded.id;
+                // find data from mongo db
+                let user = await workerrr.findOne({ _id: uid });
+                var urname = user.username;
+                socket.emit('user', {token: data, user: urname});
             }
         });
-        
     });
-    socket.emit('online', '');
-    // schedule a function to run every hour between 9 and 17 
-    schedule.scheduleJob('0 0 9-17 * * *', async () => {
-        // sleep for 5 min 
-        await sleep(300000);
-        // get current date
+
+    socket.on('wrkr', (data) => {
+        // if jwt is valid 
+        console.log('worker');
         let date = new Date();
+        // store only day and month and year
         let day = date.getDate();
         let month = date.getMonth() + 1;
         let year = date.getFullYear();
         date = `${day}/${month}/${year}`;
-        // find data from date
+        // get data 
         stats.findOne({ date: date }, (err, data) => {
-            if (err) {
-                console.log(err);
-            } else {
-                if (data) {
-                    // if data exists send it to client
-                    const schedule = data.data;
-                    // current hour 
-                    let hour = date.getHours();
-                    var task = "task" + hour;
-                    var tasklist = schedule[task];
-                    console.log(tasklist);
-                    // if tasklist is not empty
-                    if (tasklist) {
-                        // go through all elements of task list 
-                        var joblist = {};
-                        for (let i = 0; i < tasklist.length; i++) {
-                            // if joblist[jobname] is not defined create it
-                            if (!joblist[tasklist[i].jobname]) {
-                                joblist[tasklist[i].jobname] = [];
-                            }
-                            var job = tasklist[i];
-                            var perc = job[1];
-                            var jobname = job[0];
-                            // take perc percent of workers from list Workers and store it as joblist[jobname] = [workers] then remove the workers from Workers list
-                            var workers = Workers.slice(0, Math.floor(Workers.length * perc));
-                            joblist[jobname] += workers;
-                            Workers = Workers.slice(Math.floor(Workers.length * perc));
+            var taskss = JSON.parse(data.data);
+            socket.emit('data', taskss);
+        });
+        
+    });
 
-                        }
-                    }
-                }
-            }
-        }
-    }
+    socket.on('getdata', (data) => {
+        console.log('getdata');
+        let date = new Date();
+        // store only day and month and year
+        let day = date.getDate();
+        let month = date.getMonth() + 1;
+        let year = date.getFullYear();
+        date = `${day}/${month}/${year}`;
+        // get data 
+        stats.findOne({ date: date }, (err, data) => {
+            var taskss = JSON.parse(data.data);
+            socket.emit('yeledata', taskss);
+        });
+        
+    });
 
 });
 
