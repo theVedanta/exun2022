@@ -16,6 +16,7 @@
             rel="stylesheet"
             href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"
         />
+        <script src="https://cdn.jsdelivr.net/npm/chart.js@3.7.0/dist/chart.min.js"></script>
         <title>Dashboard - Pushpa</title>
     </head>
     <body>
@@ -60,53 +61,92 @@
                         <div class="graphs">
                             <div class="stock-wrap">
                                 <h4>Weekly sales</h4>
-                                <h2>$19,450</h2>
+                                <h2>$<%= value %></h2>
                                 <i class="fa fa-arrow-up"></i>
                                 <p>11.94%</p>
                             </div>
                             <div class="stock-wrap">
                                 <h4>Weekly sales</h4>
-                                <h2>$19,450</h2>
+                                <h2>$<%= value %></h2>
                                 <i class="fa fa-arrow-up"></i>
                                 <p>11.94%</p>
                             </div>
                             <div class="stock-wrap">
                                 <h4>Weekly sales</h4>
-                                <h2>$19,450</h2>
+                                <h2>$<%= value %></h2>
                                 <i class="fa fa-arrow-up"></i>
                                 <p>11.94%</p>
                             </div>
                         </div>
-                        <div class="graph-1">
-                            <h1>Graph</h1>
+                        <div class="graph-1 p-10">
+                            <canvas
+                                id="myChart"
+                                style="height: 100%; width: 100%"
+                            ></canvas>
                         </div>
                     </div>
                     <div class="stock">
                         <h1>Stock</h1>
                         <div class="stock-div">
-                            <img src="/assets/jar.svg" />
+                            <img
+                                src="<%= imgObj[Math.round(cocoa / 50) * 50] %>"
+                            />
                             <div class="stock-text">
                                 <h4>Cocoa</h4>
-                                <p>73%</p>
+                                <p><%= Math.round(cocoa) %>%</p>
                             </div>
                         </div>
                         <div class="stock-div">
                             <div class="stock-text left">
-                                <h4>Sugar</h4>
-                                <p class="green">64%</p>
+                                <h4>Milk</h4>
+                                <p class="green"><%= Math.round(milk) %>%</p>
                             </div>
-                            <img src="/assets/jar.svg" class="right" />
+                            <img
+                                src="<%= imgObj[Math.round(milk / 50) * 50] %>"
+                                class="right"
+                            />
                         </div>
                         <div class="stock-div">
-                            <img src="/assets/jar.svg" />
+                            <img
+                                src="<%= imgObj[Math.round(chocolate / 50) * 50] %>"
+                            />
                             <div class="stock-text">
-                                <h4>Milk</h4>
-                                <p>69%</p>
+                                <h4>Chocolate</h4>
+                                <p><%= Math.round(chocolate) %>%</p>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
+
+        <script>
+            const ctx = document.getElementById("myChart").getContext("2d");
+            let valArr = "<%= valArr %>";
+            valArr = valArr.split(",");
+
+            let dateArr = "<%= dateArr %>";
+            dateArr = dateArr.split(",");
+
+            const myChart = new Chart(ctx, {
+                type: "bar",
+                data: {
+                    labels: dateArr,
+                    datasets: [
+                        {
+                            data: valArr,
+                            borderWidth: 2,
+                        },
+                    ],
+                },
+                options: {
+                    scales: {
+                        y: {
+                            beginAtZero: true,
+                        },
+                    },
+                },
+            });
+        </script>
     </body>
 </html>
