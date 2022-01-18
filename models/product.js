@@ -6,9 +6,20 @@ const ProductSchema = new Schema({
     desc: String,
     price: Number,
     img: String,
-    ingredients: Array,
+    // ingredients: Array,
+    recoms: Object,
 });
 
 const model = mongoose.model("products", ProductSchema);
 
 module.exports = model;
+
+/*
+let recoms = {
+    type: "chocolate",
+    cocoa: 1/2/3,
+    milk: 1/2/3
+    servings: 1/2/4,
+    flavour: "dark"/"light"/"normal",
+}
+*/

@@ -4,16 +4,20 @@
     box-sizing: border-box;
     font-family: "Bowlby One";
     font-weight: 100;
+    outline: none;
 }
 
 :root {
     --brown: #382207;
+    --h: #4e3b24;
     --bg: #81674a;
     --light: #997c62;
     --green: #34e4b5;
     --red: #e03a45;
 }
-
+img {
+    object-fit: cover;
+}
 body {
     background-color: var(--bg);
     font-family: "Bowlby One";
@@ -21,10 +25,12 @@ body {
     color: white;
     letter-spacing: 0.2vh;
     font-size: 1.3vw;
+    width: 100vw;
+    overflow: hidden;
 }
 
 .navbar {
-    width: 20vw;
+    width: 15vw;
     background-color: var(--brown);
     padding-left: 2.5vw;
     padding-top: 1.5vw;
@@ -36,9 +42,12 @@ body {
 .nav-top h1 {
     font-size: 2vw;
 }
+.navbar h1 {
+    font-size: 1.6vw;
+}
 
 .navbar .line {
-    width: 15vw;
+    width: 10.5vw;
     height: 0.15vw;
     background-color: var(--light);
     margin: 1.5vw 0;
@@ -46,6 +55,7 @@ body {
 
 .navbar > div.main {
     margin: 2vh 0;
+    font-size: 1vw;
 }
 
 .navbar > div.main.last {
@@ -58,7 +68,8 @@ body {
     margin-left: 1vw;
     color: white;
     text-decoration: none;
-}.container {
+}
+.container {
     display: flex;
 }
 
@@ -67,13 +78,20 @@ body {
     font-size: 1.2vw;
 }
 
+.side-logo {
+    height: 15vh;
+    width: 85%;
+    object-fit: cover;
+    object-position: center;
+}
+
 /* TOP NAV */
 
 .nav-top {
     display: flex;
     /* flex-direction: column; */
     justify-content: space-between;
-    width: 78vw;
+    width: 83.8vw;
     background-color: var(--light);
     padding: 1.5vw 1.2vw;
     border-bottom-left-radius: 1vw;
@@ -83,10 +101,10 @@ body {
 .nav-top img {
     height: 2vw;
     vertical-align: middle;
-    margin: 0 0.2vw
+    margin: 0 0.2vw;
 }
 
 .flex-div-wrap {
     display: flex;
-    width: 78vw;
+    width: 83.8vw;
 }
