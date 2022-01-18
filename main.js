@@ -22,6 +22,9 @@ const io = require('socket.io')(server, {
     },
     allowEIO3: true
 });
+const schedule = require('node-schedule');
+const jwt = require("jsonwebtoken");
+var Workers = {}
 
 // DB CONNECTION
 async function connectDB() {
@@ -81,8 +84,8 @@ app.get("*", (req, res) => {
     res.send("Error 404, Not found");
 });
 
+var Workers = []
 // !socket connection
-
 io.on('connection', (socket) => {
     console.log('a user connected');
     socket.on('disconnect', () => {
@@ -135,9 +138,92 @@ io.on('connection', (socket) => {
             }
         });
     });
+
+    socket.on('wrkr', (data) => {
+        // if jwt is valid 
+        const date = new Date();
+        jwt.verify(data, process.env.ACCESS_TOKEN_SECRET, (err, decoded) => {
+            if (err) {
+                console.log(err);
+            } else {          
+                // if time.gethours is between 9 and 16 and time.getminutes is between 0 and 5 
+                console.log("checking time")
+                if(date.getHours() >= 9 && date.getHours() <= 17 && date.getMinutes() >= 0 && date.getMinutes() <= 10){
+                    // if jwt is valid add the userid to a list if not already in it
+                    console.log("did stuff")
+                    if (!Workers.includes(decoded.id)) {
+                        Workers.push(decoded.id);
+                        console.log(Workers);
+                    } else {
+                        console.log(Workers)
+                    }  
+                } else {
+                    console.log('not in working hours');
+                }
+
+            }
+        });
+        
+    });
+    socket.emit('online', '');
+    // schedule a function to run every hour between 9 and 17 
+    schedule.scheduleJob('0 0 9-17 * * *', async () => {
+        // sleep for 5 min 
+        await sleep(300000);
+        // get current date
+        let date = new Date();
+        let day = date.getDate();
+        let month = date.getMonth() + 1;
+        let year = date.getFullYear();
+        date = `${day}/${month}/${year}`;
+        // find data from date
+        stats.findOne({ date: date }, (err, data) => {
+            if (err) {
+                console.log(err);
+            } else {
+                if (data) {
+                    // if data exists send it to client
+                    const schedule = data.data;
+                    // current hour 
+                    let hour = date.getHours();
+                    var task = "task" + hour;
+                    var tasklist = schedule[task];
+                    console.log(tasklist);
+                    // if tasklist is not empty
+                    if (tasklist) {
+                        // go through all elements of task list 
+                        var joblist = {};
+                        for (let i = 0; i < tasklist.length; i++) {
+                            // if joblist[jobname] is not defined create it
+                            if (!joblist[tasklist[i].jobname]) {
+                                joblist[tasklist[i].jobname] = [];
+                            }
+                            var job = tasklist[i];
+                            var perc = job[1];
+                            var jobname = job[0];
+                            // take perc percent of workers from list Workers and store it as joblist[jobname] = [workers] then remove the workers from Workers list
+                            var workers = Workers.slice(0, Math.floor(Workers.length * perc));
+                            joblist[jobname] += workers;
+                            Workers = Workers.slice(Math.floor(Workers.length * perc));
+
+                        }
+                    }
+                }
+            }
+        }
+    }
+
 });
+
+
+
 
 // !Socket + express 
 server.listen(port, () => {
     console.log("listening on port " + port)
 })
+
+// sleep function
+function sleep(ms) {
+    return new Promise(resolve => setTimeout(resolve, ms));
+}

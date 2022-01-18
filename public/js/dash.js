@@ -70,7 +70,7 @@ function assignvalues(){
                 // get the div with id distribution + lastletter 
                 var div = document.getElementById('distribution' + lastletter);
                 // add a div to that div with class task
-                innrhtml += `<div class="task ${array[i][0]}" style="width:${array[i][1]}%" onClick = "editbox('${array[i][0]}','${key}')"><h1>` + array[i][0] + '<div class="line"></h1></div>';
+                innrhtml += `<div class="task ${array[i][0]}" style="width:${array[i][1]}%" onClick = "editbox('${array[i][0]}','${key}')" title="${array[i][1]}% ${array[i][0]}"><h1>` + array[i][0] + '<div class="line"></h1></div>';
                 
             }
             console.log('distribution' + lastletter)
@@ -105,13 +105,21 @@ function editbox(name,number){
     // if input is not null
     if (input != null) {
         var input2 = prompt('Enter the percentage', 'Percentage');
+        // convert to int
+        var input2 = parseInt(input2)
         // if input2 is not null
         if (input2 != null) {
             array = tasks[number]
             // go through all elements of the array
             for (let i = 0; i < array.length; i++) {
+                // if percentage = 0 remove the array with the name 
+                if (input2 == 0 && array[i][0] == name) {
+                    tasks[number].splice(i, 1);
+                    assignvalues()
+                }
+
                 // if the name of the task is equal to the input
-                if (array[i][0] == name) {
+                else if (array[i][0] == name) {
                     // change the name of the task
                     array[i][0] = input
                     // change the percentage of the task
