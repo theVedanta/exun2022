@@ -3,16 +3,24 @@
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">    
+    <link rel="stylesheet" href="/css/auth.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+        href="https://fonts.googleapis.com/css?family=Bowlby One:100,200,300,400,500,600,700,800,900"
+        rel="stylesheet"
+    />
+    <title>Worker Auth</title>
 </head>
 <body>
-    <!-- login form username and password -->
-    <form action="/worker/auth" method="POST">
-        <input type="text" name="username" placeholder="username">
-        <input type="password" name="password" placeholder="password">
-        <input type="submit" value="Login">
-    </form>
-    
+    <div class="form">
+        <h1>Worker Login!</h1>
+        <form action="/worker/auth" method="POST">
+            <input type="text" name="username" placeholder="username"><br>
+            <input type="password" name="password" placeholder="password"><br>
+            <input type="submit" class="submit" value="Login">
+        </form>
+    </div>
 </body>
 </html>

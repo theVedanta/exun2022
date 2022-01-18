@@ -1,0 +1,54 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: "Bowlby One";
+    font-weight: 400;
+    outline: none;
+}
+
+:root {
+    --brown: #382207;
+    --h: #4e3b24;
+    --bg: #81674a;
+    --light: #997c62;
+    --green: #34e4b5;
+    --red: #e03a45;
+    --vlight: #BDA188;
+}
+
+body {
+    text-align: center;
+    background-color: var(--vlight);
+    color: var(--brown);
+}
+
+.form {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -70%);
+}
+
+input[type=text], input[type=password] {
+    margin: 2vh 0;  
+    height: 6vh;
+    width: 30vw;
+    padding: 2vh 3vh;
+    border: 0;
+    border-radius: 1.5vw;
+}
+
+.submit {
+    padding: 1.5vh 2vw;
+    margin: 2vh 0; 
+    border: 0;
+    border-radius: 1.5vw;
+    cursor: pointer;
+    background-color: var(--brown);
+    color: white
+}
+
+h1 {
+    font-size: 3vw;
+}
