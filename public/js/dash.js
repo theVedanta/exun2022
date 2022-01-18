@@ -187,9 +187,64 @@ function setheight(){
     setTimeout(setheight, 60000);
 }
 setheight()
+socket.on('schedulerdataa', (msg) =>{
+    console.log(msg)
+    var milk = msg.milk
+    var milk_milk = 0.75 * (milk/100)
+    var milk_cocoa = 0.25 * (milk/100)
+    var milk_sugar = 0.75 * (milk/100)
+
+    var dark = msg.dark
+    var dark_milk = 0.5 * (dark/100)
+    var dark_cocoa = 0.5 * (dark/100)
+    var dark_sugar = 0.3 * (dark/100)
+
+    var white = msg.white
+    var white_milk = 0.8 * (white/100)
+    var white_cocoa = 0.25 * (white/100)
+    var white_sugar = 0.75 * (white/100)
+
+    var totalsugar = milk_sugar + dark_sugar + white_sugar
+    var totalcocoa = milk_cocoa + dark_cocoa + white_cocoa
+    var totalmilk = milk_milk + dark_milk + white_milk
+    totalmilk = totalmilk
+    var task = 9 
+    var used = 0
+    var totalcocoa = totalcocoa / 3
+    var totalsugar = totalsugar / 2
+    console.log(totalmilk)
+    while (totalmilk > 100){
+        tasks["task"+task] = ['raw_milk', 100 - used]
+        totalmilk -= 100-used 
+        used += 100-used 
+        if (used == 100){
+            task += 1
+            used = 0
+        }
+    }
+    
+    tasks["task"+task] = ['raw_milk', totalmilk]
+    used = totalmilk
+    console.log(tasks)
+    while (totalcocoa > 100){
+        
+        tasks["task"+task].push(['raw_cocoa', 100 - used])
+        totalcocoa -= 100-used 
+        used += 100-used 
+        if (used == 100){
+            task += 1
+            used = 0
+        }
+    }
+    tasks["task"+task]= ['raw_cocoa', totalcocoa]
+    console.log(tasks)
+   
+})
+
+function suggest(){
+
+}
 
 function scheduler(){
  socket.emit('schedulerdata', {} )
-
-
 }

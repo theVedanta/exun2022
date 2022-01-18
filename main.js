@@ -27,10 +27,10 @@ const io = require('socket.io')(server, {
 const schedule = require('node-schedule');
 const jwt = require("jsonwebtoken");
 var naklidata = {
-    rate : 100,
-    dark :5000,
-    milk : 10000,
-    white: 5000,
+    'rate' : 100,
+    'dark' :5000,
+    'milk' : 10000,
+    'white': 5000,
 }
 
 // DB CONNECTION
@@ -199,6 +199,7 @@ io.on('connection', (socket) => {
         if (hour < 10){
             naklidata['ingredient'] = null;
         }
+        socket.emit('schedulerdataa', naklidata);
 
     });
 

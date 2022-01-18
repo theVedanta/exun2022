@@ -32,10 +32,15 @@ socket.on('yeledata', (data) => {
         for (var i = 0; i < tasks.length; i++) {
             if(oompano < tasks[i][1] + n) {
                 document.getElementById('current task').innerHTML = tasks[i][0];
+                // convert to int 
+            
+                document.getElementById('time').innerHTML = date.getHours() +":00 to "+ (parseInt(date.getHours()) + 1) +":00";
             } else {
                 n = n + tasks[i][1]
             }
         }
+    } else {
+        document.getElementById('current task').style.display = "None";
     }
 });
 
@@ -44,4 +49,10 @@ function getCookie(name){
     var value = "; " + document.cookie;
     var parts = value.split("; " + name + "=");
     if (parts.length == 2) return parts.pop().split(";").shift();
+}
+
+function submittask(){
+    var details = document.getElementById('details').value;
+    console.log(details)
+    socket.emit('submittask', {details: details, oompano: oompano});
 }
