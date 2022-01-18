@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+        <link
+            href="https://fonts.googleapis.com/css?family=Bowlby One:100,200,300,400,500,600,700,800,900"
+            rel="stylesheet"
+        />
+        <link rel="stylesheet" href="/css/all.css" />
+        <link
+            href="https://unpkg.com/tailwindcss@^1.0/dist/tailwind.min.css"
+            rel="stylesheet"
+        />
+        <link rel="stylesheet" href="/css/products.css" />
+        <link
+            rel="stylesheet"
+            href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"
+            integrity="sha512-Fo3rlrZj/k7ujTnHg4CGR2D7kSs0v4LLanw2qksYuRlEzO+tcaEPQogQ0KaoGN26/zrn20ImR1DfuLWnOo7aBA=="
+            crossorigin="anonymous"
+            referrerpolicy="no-referrer"
+        />
+        <title>Dashboard - Pushpa</title>
+    </head>
+    <body>
+        <div class="container">
+            <div class="navbar">
+                <!-- <img src="/assets/wlogo.svg"> -->
+                <h1>Logo</h1>
+                <div class="line"></div>
+                <div class="main">
+                    <i class="fa fa-car"></i>
+                    <a href="">Dashboard</a>
+                </div>
+                <div class="main">
+                    <i class="fa fa-car"></i>
+                    <a href="/dashboard/schedule">Schedule</a>
+                </div>
+                <div class="main">
+                    <i class="fa fa-car"></i>
+                    <a href="/dashboard/products">Products</a>
+                </div>
+                <div class="main last">
+                    <i class="fa fa-car"></i>
+                    <a href="/dashboard/create">Create</a>
+                </div>
+                <div class="line"></div>
+                <div class="main">
+                    <i class="fa fa-car"></i>
+                    <a href="/dashboard/logout">Log out</a>
+                </div>
+            </div>
+            <div class="main-wrap">
+                <div class="nav-top">
+                    <h1>Hello Pushpa</h1>
+                    <div class="flex items-center">
+                        <img src="/assets/sun.svg" />
+                        <img src="/assets/search.svg" />
+                        <img src="/assets/bell.svg" />
+                        <img src="/assets/person.png" />
+                    </div>
+                </div>
+                <div class="wrap">
+                    <div class="text-wrap">
+                        <h1><%= product.name %></h1>
+                        <h3>About</h3>
+                        <p><%= product.desc %></p>
+                        <div class="info-wrap">
+                            <div class="info">
+                                <h5 class="qty">
+                                    <%= (parseInt(product.recoms.cocoa) * 33)
+                                    %>%
+                                </h5>
+                                <p class="nutri">COCOA</p>
+                            </div>
+                            <div class="info">
+                                <h5 class="qty">
+                                    <%= (parseInt(product.recoms.milk) * 33) %>%
+                                </h5>
+                                <p class="nutri">MILK</p>
+                            </div>
+                            <div class="info">
+                                <h5 class="qty">
+                                    <%= (parseInt(product.recoms.servings)) %>
+                                </h5>
+                                <p class="nutri">Serves</p>
+                            </div>
+                        </div>
+                        <h4 class="price">$<%= product.price %></h4>
+                        <span>/1 bar</span>
+                    </div>
+                    <img
+                        src="/img/<%= product.img %>"
+                        alt=""
+                        class="prod-img rounded-xl"
+                    />
+                    <img class="bgImage" src="/assets/bg2.svg" />
+                </div>
+            </div>
+        </div>
+    </body>
+</html>

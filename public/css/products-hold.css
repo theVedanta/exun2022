@@ -1,0 +1,86 @@
+form {
+    width: 60vw;
+    height: 75vh;
+    background: var(--brown);
+    position: fixed;
+    top: 50%;
+    left: 55%;
+    padding: 4vh 3vw;
+    border-radius: 20px;
+    z-index: 100;
+    transform: translate(-50%, -75%);
+    opacity: 0;
+    pointer-events: none;
+    transition: all 0.3s;
+}
+input,
+textarea,
+select {
+    background: var(--light);
+    color: var(--brown) !important;
+}
+input::placeholder,
+textarea::placeholder,
+select::placeholder {
+    color: rgb(192, 192, 192) !important;
+}
+.form-active {
+    opacity: 1;
+    pointer-events: all;
+    transform: translate(-50%, -50%);
+}
+.less-bright {
+    filter: brightness(0.6);
+    pointer-events: none;
+}
+.body-active {
+    background: #4e3b24;
+}
+form label {
+    font-size: 0.9vw;
+    margin-bottom: 1vh;
+}
+form .flex input,
+form .flex select {
+    border-radius: 12px;
+    padding: 1vh 1.2vw;
+    font-size: 1vw;
+}
+form .flex select {
+    padding: 0.8vh 1.2vw;
+}
+.input-unit {
+    width: 31%;
+}
+.input-unit-h {
+    width: 48%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+.input-unit input,
+.input-unit select {
+    width: 100%;
+}
+
+.big-sub-unit {
+    width: 48%;
+}
+.big-unit textarea {
+    padding: 1vh 1.2vw;
+    font-size: 1vw;
+    resize: none;
+    width: 100%;
+    height: 20vh;
+}
+.big-unit input {
+    padding: 1vh 1.2vw;
+    font-size: 1vw;
+    width: 100%;
+}
+.slide-unit {
+    display: flex;
+    margin: 3vh 0;
+    flex-direction: column;
+    width: 48%;
+}

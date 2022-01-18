@@ -4,6 +4,14 @@
         <meta charset="UTF-8" />
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Wonka's - Products</title>
+        <link
+            rel="stylesheet"
+            href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"
+            integrity="sha512-Fo3rlrZj/k7ujTnHg4CGR2D7kSs0v4LLanw2qksYuRlEzO+tcaEPQogQ0KaoGN26/zrn20ImR1DfuLWnOo7aBA=="
+            crossorigin="anonymous"
+            referrerpolicy="no-referrer"
+        />
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
         <link
@@ -11,18 +19,17 @@
             rel="stylesheet"
         />
         <link rel="stylesheet" href="/css/all.css" />
-        <link rel="stylesheet" href="/css/products.css" />
+        <link rel="stylesheet" href="/css/products-hold.css" />
         <link
+            href="https://unpkg.com/tailwindcss@^1.0/dist/tailwind.min.css"
             rel="stylesheet"
-            href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"
         />
-        <title>Dashboard - Pushpa</title>
     </head>
     <body>
         <div class="container">
             <div class="navbar">
-                <!-- <img src="/assets/wlogo.svg"> -->
-                <h1>Logo</h1>
+                <img src="/assets/wlogo.svg" class="side-logo" />
+                <!-- <h1>Logo</h1> -->
                 <div class="line"></div>
                 <div class="main">
                     <i class="fa fa-car"></i>
@@ -47,43 +54,200 @@
                 </div>
             </div>
             <div class="main-wrap">
-                <div class="nav-top">
+                <div class="nav-top items-center" style="width: 82.8vw">
                     <h1>Hello Pushpa</h1>
-                    <div>
+                    <div class="flex">
                         <img src="/assets/sun.svg" />
                         <img src="/assets/search.svg" />
                         <img src="/assets/bell.svg" />
                         <img src="/assets/person.png" />
                     </div>
                 </div>
-                <div class="wrap">
-                    <div class="text-wrap">
-                        <h1>LAVENDAR ROSEMARY CHOCOLATE</h1>
-                        <h3>Ingredients</h3>
-                        <p>Cocoa, milk, cocoa butter, lecithin, rosemary extract, sugar, edible lavender oil, vanilla essence</p>
-                        <div class="info-wrap">
-                            <div class="info">
-                                <h5 class="qty">216</h5>
-                                <p class="nutri">PROTEIN</p>
-                            </div>
-                            <div class="info">
-                                <h5 class="qty">216</h5>
-                                <p class="nutri">FAT</p>
-                            </div>
-                            <div class="info">
-                                <h5 class="qty">216</h5>
-                                <p class="nutri">SQRL</p>
-                            </div>
-                            <div class="info">
-                                <h5 class="qty">216</h5>
-                                <p class="nutri">CARBS</p>
-                            </div>
+
+                <div
+                    class="add-block my-5 flex justify-end"
+                    style="width: 83vw"
+                >
+                    <button
+                        class="px-10 py-4 rounded-xl text-lg"
+                        style="background: #382207"
+                        onclick="toggleForm()"
+                    >
+                        <i class="fas fa-plus"></i>&nbsp;New Product
+                    </button>
+                </div>
+
+                <div
+                    class="flex cards justify-between items-center"
+                    style="width: 82vw"
+                >
+                    <% for (let pr of products) { %>
+                    <div
+                        class="card p-6 rounded-2xl shadow-lg flex flex-col items-center mt-10"
+                        style="width: 30%; background: #997c62"
+                    >
+                        <img
+                            src="/img/<%= pr.img %>"
+                            alt="img"
+                            class="w-full rounded-xl"
+                            style="width: full; height: 30vh"
+                        />
+                        <h1 class="mt-5 text-2xl"><%= pr.name %></h1>
+                        <div class="btns flex w-full justify-between mt-5">
+                            <a
+                                href="/dashboard/products/<%= pr._id %>"
+                                class="w-9/12 py-4 flex justify-center items-center text-base rounded-xl shadow-md"
+                                style="background: #382207"
+                                >View Product</a
+                            >
+                            <a
+                                href="/dashboard/products/delete/<%= pr._id %>"
+                                class="w-2/12 py-4 flex justify-center items-center text-base rounded-xl shadow-md"
+                                style="background: #e03a45"
+                                ><i class="far fa-trash-alt"></i
+                            ></a>
                         </div>
-                        <h4 class="price">$28.5</h4><span>/1 bar</span>
                     </div>
-                    <img class="bgImage" src="/assets/bg2.png">
+                    <% } %>
                 </div>
             </div>
         </div>
+
+        <form
+            action="/dashboard/products/add"
+            method="POST"
+            enctype="multipart/form-data"
+        >
+            <i
+                class="far fa-times-circle cursor-pointer text-3xl absolute"
+                style="top: 15px; right: 15px"
+                onclick="toggleForm()"
+            ></i>
+            <div class="flex w-full justify-between">
+                <div class="input-unit">
+                    <label for="name">Product Name</label>
+                    <input
+                        type="text"
+                        name="name"
+                        placeholder="Product Name"
+                        required
+                    />
+                </div>
+                <div class="input-unit">
+                    <label for="price">Price</label>
+                    <input
+                        type="number"
+                        name="price"
+                        placeholder="Price"
+                        required
+                    />
+                </div>
+                <div class="input-unit">
+                    <label for="type">Type of Product</label>
+                    <select name="type" id="type">
+                        <option value="chocolate">Chocolate</option>
+                        <option value="candy">Candy</option>
+                    </select>
+                </div>
+            </div>
+            <div class="big-unit flex justify-between mt-5">
+                <div class="big-sub-unit flex flex-col">
+                    <label for="desc">Description</label>
+                    <textarea
+                        name="desc"
+                        id="desc"
+                        placeholder="Description of product"
+                        required
+                        class="rounded-xl"
+                    ></textarea>
+                </div>
+                <div class="big-sub-unit flex flex-col">
+                    <label for="h">Product Image</label>
+                    <label
+                        for="img"
+                        class="py-4 px-10 rounded-xl flex justify-center items-center cursor-pointer"
+                        style="
+                            background: #997c62;
+                            height: 20vh;
+                            color: var(--brown);
+                        "
+                        ><i class="fas fa-plus"></i>&nbsp;Add Image</label
+                    >
+                    <input
+                        type="file"
+                        name="img"
+                        id="img"
+                        class="hidden"
+                        required
+                        accept="image/*"
+                        onchange="loadFile(event)"
+                    />
+                    <img src="" alt="" id="output" />
+                </div>
+            </div>
+
+            <div class="w-full flex justify-between mt-5">
+                <div class="input-unit-h">
+                    <label for="servings">Serves?</label>
+                    <select name="servings" id="servings">
+                        <option value="1">1</option>
+                        <option value="2">2</option>
+                        <option value="4">4</option>
+                    </select>
+                </div>
+                <div class="input-unit-h">
+                    <label for="flavour">Flavour of Chocolate?</label>
+                    <select name="flavour" id="flavour">
+                        <option value="normal">Standard Chocolate</option>
+                        <option value="dark">Dark Chocolate</option>
+                        <option value="light">Milk Chocolate</option>
+                    </select>
+                </div>
+            </div>
+
+            <div class="w-full flex justify-between">
+                <div class="slide-unit">
+                    <label for="cocoa">Cocoa</label>
+                    <input
+                        type="range"
+                        min="1"
+                        max="3"
+                        value="1"
+                        name="cocoa"
+                    />
+                </div>
+                <div class="slide-unit">
+                    <label for="milk">Milk</label>
+                    <input type="range" min="1" max="3" value="1" name="milk" />
+                </div>
+            </div>
+
+            <button
+                type="submit"
+                class="w-full flex justify-center items-center rounded-xl py-3"
+                style="background: var(--light)"
+            >
+                Done
+            </button>
+        </form>
+
+        <script>
+            let loadFile = function (event) {
+                let image = document.getElementById("output");
+                event.target.previousElementSibling.remove();
+                image.src = URL.createObjectURL(event.target.files[0]);
+                image.classList.add("w-full");
+                image.classList.add("rounded-xl");
+                image.style.height = "20vh";
+            };
+
+            let toggleForm = () => {
+                document.querySelector("form").classList.toggle("form-active");
+                document
+                    .querySelector(".container")
+                    .classList.toggle("less-bright");
+                document.body.classList.toggle("body-active");
+            };
+        </script>
     </body>
 </html>

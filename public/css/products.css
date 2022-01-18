@@ -3,13 +3,13 @@
 }
 
 .wrap {
-    width: 78vw;
+    width: 83.8vw;
     display: flex;
     justify-content: space-between;
 }
 
 .text-wrap {
-    color: #D0BCA4;
+    color: #d0bca4;
     width: 50vw;
     padding: 0 4vw;
     margin-top: 5vh;
@@ -21,31 +21,32 @@
 }
 
 .wrap img.bgImage {
-    width: 30vw;
+    /* width: 30vw; */
+    height: 80vh;
 }
 
 .text-wrap h3 {
     font-size: 2vw;
-    color: #D0A883;
+    color: #d0a883;
     margin: 2vh 0 1.5vh 0;
 }
 
 .info-wrap {
     display: flex;
-    margin: 2vh 0;
+    margin: 4vh 0;
 }
 
 .info {
     border-radius: 3vw;
-    background-color: #91785B;
+    background-color: #91785b;
     text-align: center;
     margin-right: 1vw;
     padding: 3.5vh 0.2vw 0 0.2vw;
     width: 6vw;
 }
 
-.qty {    
-    color: #81674A;
+.qty {
+    color: #81674a;
 }
 
 .nutri {
@@ -62,4 +63,12 @@
 span {
     color: var(--brown);
     font-size: 1.7vw;
+}
+
+.prod-img {
+    width: 32vw;
+    height: 75vh;
+    position: absolute;
+    top: 18vh;
+    right: 5vw;
 }

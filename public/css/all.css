@@ -4,16 +4,20 @@
     box-sizing: border-box;
     font-family: "Bowlby One";
     font-weight: 100;
+    outline: none;
 }
 
 :root {
     --brown: #382207;
+    --h: #4e3b24;
     --bg: #81674a;
     --light: #997c62;
     --green: #34e4b5;
     --red: #e03a45;
 }
-
+img {
+    object-fit: cover;
+}
 body {
     background-color: var(--bg);
     font-family: "Bowlby One";
@@ -21,6 +25,8 @@ body {
     color: white;
     letter-spacing: 0.2vh;
     font-size: 1.3vw;
+    width: 100vw;
+    overflow: hidden;
 }
 
 .navbar {
@@ -62,7 +68,8 @@ body {
     margin-left: 1vw;
     color: white;
     text-decoration: none;
-}.container {
+}
+.container {
     display: flex;
 }
 
@@ -71,40 +78,33 @@ body {
     font-size: 1.2vw;
 }
 
+.side-logo {
+    height: 15vh;
+    width: 85%;
+    object-fit: cover;
+    object-position: center;
+}
+
 /* TOP NAV */
 
 .nav-top {
     display: flex;
     /* flex-direction: column; */
     justify-content: space-between;
-    width: 78vw;
+    width: 83.8vw;
     background-color: var(--light);
     padding: 1.5vw 1.2vw;
     border-bottom-left-radius: 1vw;
     border-bottom-right-radius: 1vw;
-<<<<<<< HEAD
 }
 
 .nav-top img {
     height: 2vw;
     vertical-align: middle;
-    margin: 0 0.2vw
+    margin: 0 0.2vw;
 }
 
 .flex-div-wrap {
     display: flex;
-    width: 78vw;
-=======
->>>>>>> a454b20e9f6339746fda83c48f2fc7f829ea12dd
-}
-
-.nav-top img {
-    height: 2vw;
-    vertical-align: middle;
-    margin: 0 0.2vw
-}
-
-.flex-div-wrap {
-    display: flex;
-    width: 78vw;
+    width: 83.8vw;
 }
