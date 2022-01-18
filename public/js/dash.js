@@ -1,6 +1,35 @@
 // import socket io 
 var socket = io('http://localhost:4000');
 
+// get todays date 
+var today = new Date();
+// get the date
+var date = today.getDate()
+// get the day of the week
+var day = new Date().getDay();
+
+// day number to day name
+function dayname(day){
+    switch(day){
+        case 0:
+            return 'Sunday';
+        case 1:
+            return 'Monday';
+        case 2:
+            return 'Tuesday';
+        case 3:
+            return 'Wednesday';
+        case 4:
+            return 'Thursday';
+        case 5:
+            return 'Friday';
+        case 6:
+            return 'Saturday';
+    }
+}
+
+
+document.getElementById('datentime').innerHTML = " " + date + ' ' + dayname(day);
 
 // connect to socket server
 socket.on('connect', function() {
@@ -132,3 +161,29 @@ function editbox(name,number){
         }
     }
 }
+
+// run function every 1 min 
+function setheight(){
+    // get hours of day 
+    var hours = new Date().getHours();
+    console.log("hours")
+    // if hours between 9 and 17 
+    if (hours >= 9 && hours <= 17) {
+        var min = new Date().getMinutes();
+        hours = hours - 9 
+        // convert hours to minutes 
+        var hours = hours * 60
+        // add minutes to hours
+        var hours = hours + min
+        var fraction = hours / 480
+        var height = fraction * 72 
+        height = height + 10
+        document.getElementById('clock').style.top = height + '%'
+    } else {
+        document.getElementById('clock').style.display = 'none'
+    }
+
+    // run function every 1 min
+    setTimeout(setheight, 60000);
+}
+setheight()

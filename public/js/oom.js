@@ -1,5 +1,5 @@
-
-var socket = io('http://localhost:4000');
+var host = window.location.host;
+var socket = io(host);
 var oompano = 0; 
 // get cookie with name "token"
 var token = getCookie("auth-token");
@@ -13,14 +13,30 @@ socket.on('connect', function() {
 socket.on('user', (data) => {
     console.log(data);
     if (token == data.token) {
-        oompano = data.name
+        // last 2 digits of data.user
+        oompano = data.user.slice(-2);
         socket.emit('getdata', {})
     }
 });
 
 socket.on('yeledata', (data) => {
     console.log(data);
-    
+    // get hour of the day
+    var date = new Date();
+    var hour = date.getHours();
+    if (hour < 17 && hour > 8) {
+        var taskno = "task" + hour;
+        var tasks = data[taskno];
+        // for each element in array task 
+        var n = 0 
+        for (var i = 0; i < tasks.length; i++) {
+            if(oompano < tasks[i][1] + n) {
+                document.getElementById('current task').innerHTML = tasks[i][0];
+            } else {
+                n = n + tasks[i][1]
+            }
+        }
+    }
 });
 
 
