@@ -214,31 +214,74 @@ socket.on('schedulerdataa', (msg) =>{
     var totalsugar = totalsugar / 2
     console.log(totalmilk)
     while (totalmilk > 100){
-        tasks["task"+task] = ['raw_milk', 100 - used]
-        totalmilk -= 100-used 
-        used += 100-used 
-        if (used == 100){
-            task += 1
-            used = 0
-        }
+        tasks["task" + task] = []
+        tasks["task"+task].push(['raw_milk', 100])
+        totalmilk -= 100
+        task += 1
+        tasks["task" + task] = []
     }
     
-    tasks["task"+task] = ['raw_milk', totalmilk]
+    tasks["task"+task].push(['raw_milk', totalmilk])
     used = totalmilk
-    console.log(tasks)
+    console.log(totalcocoa)
     while (totalcocoa > 100){
         
         tasks["task"+task].push(['raw_cocoa', 100 - used])
         totalcocoa -= 100-used 
-        used += 100-used 
-        if (used == 100){
-            task += 1
-            used = 0
-        }
+        used = 0 
+        task += 1
+        tasks["task"+task] = []
     }
-    tasks["task"+task]= ['raw_cocoa', totalcocoa]
+    if (100 - used < totalcocoa){
+        tasks["task"+task].push(['raw_cocoa', 100 - used])
+        
+        totalcocoa -= 100-used
+        task += 1
+        used = 0
+        tasks["task"+task] = []
+    }
+    tasks["task"+task].push(['raw_cocoa', Math.round(totalcocoa)])
+    used = used + Math.round(totalcocoa)
+    
+    while (totalsugar > 100){
+        
+        tasks["task"+task].push(['raw_sugar', 100 - used])
+        totalsugar -= 100-used 
+        used = 0 
+        task += 1
+        tasks["task"+task] = []
+    }
+    
+    if (100 - used < totalsugar){
+        tasks["task"+task].push(['raw_sugar', 100 - used])
+        
+        console.log(totalsugar)
+        totalsugar =totalsugar - (100-used)
+        console.log("used = "+used)
+        task += 1
+        tasks["task"+task] = []
+    }
+    used = 0
+    tasks["task"+task].push(['raw_sugar', Math.round(totalsugar)])
+    used = used + Math.round(totalsugar)
     console.log(tasks)
-   
+    var totalchocs = msg.dark + msg.white + msg.milk
+    var darkshare = msg.dark / totalchocs
+    darkshare = darkshare * 80
+    var whiteshare = msg.white / totalchocs
+    whiteshare = whiteshare * 80
+    var milkshare = msg.milk / totalchocs
+    milkshare = milkshare * 80
+    task += 1
+    while (task < 17){
+        tasks["task"+task] = []
+        tasks["task"+task].push(['dark', Math.round(darkshare)])
+        tasks["task"+task].push(['white', Math.round(whiteshare)])
+        tasks["task"+task].push(['milk', Math.round(milkshare)])
+        task += 1
+    }
+    assignvalues()
+    socket.emit('task', tasks)
 })
 
 function suggest(){
