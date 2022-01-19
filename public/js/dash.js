@@ -1,5 +1,6 @@
 // import socket io 
-var socket = io('http://localhost:4000');
+var host = window.location.host;
+var socket = io(host);
 
 // get todays date 
 var today = new Date();
