@@ -262,43 +262,46 @@ nav {
 .tru {
     background-color: #a6876b;
     width: 100%;
-    height: 84%;
+    height: 78%;
     border-radius: 20px;
 }
 .add-icon {
     width: 100%;
     transform: scale(0.5);
 }
-.date{
+.date {
     width: 94%;
     height: 10%;
     position: relative;
-    background-color: #A6876B;
+    background-color: #a6876b;
     margin-left: 6%;
     border-radius: 20px 20px 0px 0px;
     display: flex;
 }
-.tru li{
+.tru li {
     width: 100%;
     height: 10%;
     position: relative;
-    background-color: #A6876B;
-    padding:0;
-    margin:0;
+    background-color: #a6876b;
+    padding: 0;
+    margin: 0;
     margin-left: 6%;
     border-radius: 20px 20px 0px 0px;
     display: flex;
     padding-top: 5vh;
 }
-#datentime{
-    width: 50%;
+#datentime {
+    width: 40%;
     height: 100%;
-    display: inline-block;
+    display: flex;
+    align-items: center;
+    justify-content: center;
     margin: 0;
     padding: 0;
     overflow: hidden;
+    font-size: 1.6vw;
 }
-.auto{
+.auto {
     width: 40%;
     display: inline-block;
     margin: 0;
@@ -306,8 +309,8 @@ nav {
     overflow: hidden;
     text-align: right;
     position: absolute;
-    right:10%;
-    top:50%;
+    right: 10%;
+    top: 50%;
     transform: translateY(-50%);
     cursor: pointer;
 }
